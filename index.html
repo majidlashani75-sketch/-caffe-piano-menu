@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CAFE PIANO | Luxury Digital Menu</title>
+    <!-- ایمپورت فونت‌های سلطنتی انگلیسی -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --gold-primary: #c5a059; /* طلایی مات پرمیوم */
+            --gold-light: #e5c983;
+            --gold-glow: rgba(197, 160, 89, 0.15);
+            --bg-dark: #0a0a0b; /* مشکی ابسیدین */
+            --surface-glass: rgba(18, 18, 20, 0.7);
+            --border-color: rgba(197, 160, 89, 0.12);
+            --text-gold: #c5a059;
+            --text-light: #f5f5f7;
+            --text-muted: #8e8e93;
+            --font-serif: 'Cinzel', 'Times New Roman', serif;
+            --font-sans: 'Montserrat', system-ui, -apple-system, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: var(--font-sans);
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(197, 160, 89, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 0% 100%, rgba(197, 160, 89, 0.03) 0%, transparent 40%);
+            background-attachment: fixed;
+            line-height: 1.8;
+            letter-spacing: 0.5px;
+        }
+
+        /* هدر لوکس */
+        header {
+            position: relative;
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        /* پس‌زمینه محو هدر برای حس عمق */
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to bottom, rgba(10,10,11,0.2), var(--bg-dark)), 
+                        url('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            opacity: 0.45;
+            z-index: -1;
+            filter: grayscale(40%) contrast(110%);
+        }
+
+        .logo-wrapper {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 30px var(--gold-glow);
+            border: 2px solid var(--gold-primary);
+            margin-bottom: 25px;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .logo-wrapper:hover {
+            transform: scale(1.05) rotate(3deg);
+        }
+
+        .logo-wrapper img {
+            width: 82%;
+            height: auto;
+        }
+
+        .brand-title {
+            font-family: var(--font-serif);
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--text-light);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            margin-bottom: 5px;
+        }
+
+        .brand-subtitle {
+            font-family: var(--font-serif);
+            font-size: 0.8rem;
+            color: var(--text-gold);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        .scroll-indicator {
+            margin-top: 40px;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            animation: pulse 2s infinite;
+        }
+
+        /* بخش‌بندی بدنه منو */
+        .menu-container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 20px 80px;
+        }
+
+        .category-header {
+            text-align: center;
+            margin: 60px 0 40px;
+            position: relative;
+        }
+
+        .category-subtitle {
+            font-family: var(--font-serif);
+            font-size: 0.75rem;
+            color: var(--text-gold);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 12px;
+            color: #ffffff;
+        }
+
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            width: 50%;
+            height: 1.5px;
+            background: linear-gradient(to right, transparent, var(--gold-primary), transparent);
+        }
+
+        /* کارت آیتم فوق لوکس */
+        .luxury-item {
+            display: flex;
+            background: var(--surface-glass);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            margin-bottom: 24px;
+            overflow: hidden;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .luxury-item:hover {
+            transform: translateY(-4px);
+            border-color: rgba(197, 160, 89, 0.4);
+            box-shadow: 0 12px 40px rgba(197, 160, 89, 0.08);
+        }
+
+        .image-container {
+            width: 120px;
+            min-width: 120px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(15%) contrast(105%);
+            transition: transform 0.6s ease;
+        }
+
+        .luxury-item:hover .image-container img {
+            transform: scale(1.08);
+        }
+
+        /* هاله نور طلایی روی عکس در حالت هوور */
+        .image-container::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to left, rgba(10,10,11,0.4), transparent);
+        }
+
+        .item-details {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .item-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+
+        .item-name {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: var(--text-light);
+        }
+
+        .item-price {
+            font-family: var(--font-serif);
+            color: var(--text-gold);
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        .item-desc {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        /* پچ وی‌آی‌پی برای امضای کافه */
+        .signature-badge {
+            align-self: flex-start;
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+            color: var(--text-gold);
+            border: 1px solid var(--gold-primary);
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
+
+        /* دکمه پیشخدمت لوکس (VIP Call) */
+        .vip-button {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: linear-gradient(135deg, var(--gold-primary) 0%, #a47e3c 100%);
+            color: #000;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(197, 160, 89, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        .vip-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(197, 160, 89, 0.6);
+        }
+
+        /* فوتر */
+        footer {
+            background-color: #050506;
+            border-top: 1px solid var(--border-color);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .footer-note {
+            font-family: var(--font-serif);
+            font-size: 0.9rem;
+            color: var(--text-gold);
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .social-icons a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--text-gold);
+        }
+
+        .copyright {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        @media (max-width: 600px) {
+            header { height: 55vh; }
+            .brand-title { font-size: 1.9rem; letter-spacing: 4px; }
+            .logo-wrapper { width: 130px; height: 130px; }
+            .luxury-item { flex-direction: column; }
+            .image-container { width: 100%; height: 180px; }
+            .image-container::after { background: linear-gradient(to top, rgba(10,10,11,0.8), transparent); }
+            .vip-button { bottom: 20px; left: 20px; padding: 10px 18px; font-size: 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- دکمه ویژه فراخوانی پیشخدمت -->
+    <button class="vip-button" onclick="alert('پیشخدمت به زودی در کنار میز شما حضور خواهد یافت.')">
+        <span>✦</span> VIP CALL
+    </button>
+
+    <header>
+        <div class="logo-wrapper">
+            <!-- تصویر لوگوی کافه پیانو -->
+            <img src="https://i.postimg.cc/85zM6m7F/piano-logo.png" alt="CAFE PIANO LOGO">
+        </div>
+        <h1 class="brand-title">Cafe Piano</h1>
+        <p class="brand-subtitle">The Symphony of Taste</p>
+        <div class="scroll-indicator">اسکرول به پایین • SLIDE DOWN</div>
+    </header>
+
+    <div class="menu-container">
+
+        <!-- بخش اول: بار گرم -->
+        <div class="category-header">
+            <span class="category-subtitle">ACT I</span>
+            <h2 class="category-title">PRELUDE • بار گرم</h2>
+        </div>
+
+        <div class="luxury-item">
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?w=400" alt="لته آرت">
+            </div>
+            <div class="item-details">
+                <div class="item-top">
+                    <span class="item-name">سیگنچر لته آرت (Signature Latte)</span>
+                    <span class="item-price">۱۱۵,۰۰۰ تومان</span>
+                </div>
+                <p class="item-desc">اسپرسو ریسترتو ۱۰۰٪ عربیکا تک‌خاستگاه، فوم مخملی شیر داغ و هنر لته آرت اختصاصی باریستا.</p>
+                <span class="signature-badge">CHEF SPECIAL</span>
+            </div>
+        </div>
+
+        <div class="luxury-item">
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400" alt="آمریکانو">
+            </div>
+            <div class="item-details">
+                <div class="item-top">
+                    <span class="item-name">آمریکانو اسپشیالتی</span>
+                    <span class="item-price">۹۵,۰۰۰ تومان</span>
+                </div>
+                <p class="item-desc">دبل شات اسپرسو عصاره‌گیری شده بر پایه دانه زیرو کلینیکال و آب تصفیه شده دمای ۹۲ درجه.</p>
+            </div>
+        </div>
+
+
+        <!-- بخش دوم: بار سرد -->
+        <div class="category-header">
+            <span class="category-subtitle">ACT II</span>
+            <h2 class="category-title">SYMPHONY • هارمونی سرد</h2>
+        </div>
+
+        <div class="luxury-item">
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400" alt="آیس لته">
+            </div>
+            <div class="item-details">
+                <div class="item-top">
+                    <span class="item-name">آیس لته پریمیوم</span>
+                    <span class="item-price">۱۲۰,۰۰۰ تومان</span>
+                </div>
+                <p class="item-desc">ترکیب متعادل اسپرسوی خنک، شیر سرد محلی و کریستال‌های یخ با لایه‌ای از فوم سرد شیر سبک.</p>
+            </div>
+        </div>
+
+
+        <!-- بخش سوم: غدا و پیانو سایدز -->
+        <div class="category-header">
+            <span class="category-subtitle">ACT III</span>
+            <h2 class="category-title">SONATA • نواهای داغ</h2>
+        </div>
+
+        <div class="luxury-item">
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400" alt="پیتزا مخصوص">
+            </div>
+            <div class="item-details">
+                <div class="item-top">
+                    <span class="item-name">پیتزا ناپولیتن مخصوص پیانو</span>
+                    <span class="item-price">۲۸۵,۰۰۰ تومان</span>
+                </div>
+                <p class="item-desc">خمیر دست‌ساز ۴۸ ساعت تخمیر، سس گوجه سن‌مارزانو، پنیر موزارلا دی بوفالا تازه و روغن ریحان وحشی.</p>
+                <span class="signature-badge">RESERVE ONLY</span>
+            </div>
+        </div>
+
+        <div class="luxury-item">
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1518013045958-41303d59e53c?w=400" alt="سیب تنوری">
+            </div>
+            <div class="item-details">
+                <div class="item-top">
+                    <span class="item-name">سیب‌زمینی تنوری با چدار و رزماری</span>
+                    <span class="item-price">۱۲۵,۰۰۰ تومان</span>
+                </div>
+                <p class="item-desc">سیب‌زمینی‌های تنوری طعم‌دار شده با رزماری تازه، سس دیپ پنیر چدار دست‌ساز گرم و چایوز تازه.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="footer-note">A Harmonious Gathering of Senses</div>
+        <div class="social-icons">
+            <a href="https://instagram.com/caffeepiano" target="_blank">INSTAGRAM</a>
+            <a href="#">RESERVATION</a>
+            <a href="#">ABOUT US</a>
+        </div>
+        <p class="copyright">© 2026 CAFE PIANO. Designed to perfection.</p>
+    </footer>
+
+</body>
+</html>
