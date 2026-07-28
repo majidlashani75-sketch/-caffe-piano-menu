@@ -1,464 +1,888 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CAFE PIANO | Luxury Digital Menu</title>
-    <!-- ایمپورت فونت‌های سلطنتی انگلیسی -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --gold-primary: #c5a059; /* طلایی مات پرمیوم */
-            --gold-light: #e5c983;
-            --gold-glow: rgba(197, 160, 89, 0.15);
-            --bg-dark: #0a0a0b; /* مشکی ابسیدین */
-            --surface-glass: rgba(18, 18, 20, 0.7);
-            --border-color: rgba(197, 160, 89, 0.12);
-            --text-gold: #c5a059;
-            --text-light: #f5f5f7;
-            --text-muted: #8e8e93;
-            --font-serif: 'Cinzel', 'Times New Roman', serif;
-            --font-sans: 'Montserrat', system-ui, -apple-system, sans-serif;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>منوی دیجیتال کافه پیانو</title>
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            -webkit-tap-highlight-color: transparent;
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            font-family: var(--font-sans);
-            background-image: 
-                radial-gradient(circle at 50% 0%, rgba(197, 160, 89, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 0% 100%, rgba(197, 160, 89, 0.03) 0%, transparent 40%);
-            background-attachment: fixed;
-            line-height: 1.8;
-            letter-spacing: 0.5px;
-        }
+  <style>
+    :root{
+      --bg:#0b0b0b;
+      --bg-2:#111111;
+      --gold:#c9a45c;
+      --gold-2:#e2c07a;
+      --text:#f6f6f6;
+      --muted:#cfcfcf;
+      --line:rgba(201, 164, 92, 0.25);
+      --shadow:0 12px 30px rgba(0,0,0,.5);
+      --shadow-soft:0 8px 22px rgba(0,0,0,.3);
+      --radius:18px;
+      --hero-height:410px;
+    }
 
-        /* هدر لوکس */
-        header {
-            position: relative;
-            height: 70vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-            overflow: hidden;
-        }
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
 
-        /* پس‌زمینه محو هدر برای حس عمق */
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(to bottom, rgba(10,10,11,0.2), var(--bg-dark)), 
-                        url('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
-            opacity: 0.45;
-            z-index: -1;
-            filter: grayscale(40%) contrast(110%);
-        }
+    html{ scroll-behavior:smooth; }
 
-        .logo-wrapper {
-            position: relative;
-            width: 160px;
-            height: 160px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 30px var(--gold-glow);
-            border: 2px solid var(--gold-primary);
-            margin-bottom: 25px;
-            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
+    body{
+      font-family:"Vazirmatn", Tahoma, sans-serif;
+      color:var(--text);
+      line-height:1.9;
+      min-height:100vh;
+      overflow-x:hidden;
 
-        .logo-wrapper:hover {
-            transform: scale(1.05) rotate(3deg);
-        }
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.60) 0%, rgba(0,0,0,.78) 100%),
+        radial-gradient(circle at top, rgba(201,164,92,.12), transparent 38%),
+        url("https://s34.picofile.com/file/8491076100/81083389_1c20_49b0_bc14_96e5d2fb85a1.png")
+        center center / cover no-repeat fixed;
 
-        .logo-wrapper img {
-            width: 82%;
-            height: auto;
-        }
+      background-attachment: fixed;
+    }
 
-        .brand-title {
-            font-family: var(--font-serif);
-            font-size: 2.4rem;
-            font-weight: 700;
-            color: var(--text-light);
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-            margin-bottom: 5px;
-        }
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
 
-        .brand-subtitle {
-            font-family: var(--font-serif);
-            font-size: 0.8rem;
-            color: var(--text-gold);
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            opacity: 0.9;
-        }
+    /* صفحه خوش‌آمدگویی ورودی (Welcome Screen) */
+    .welcome-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.5s;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.65) 0%, rgba(0,0,0,.85) 100%),
+        radial-gradient(circle at center, rgba(201,164,92,.15), transparent 60%),
+        url("https://s34.picofile.com/file/8491076100/81083389_1c20_49b0_bc14_96e5d2fb85a1.png")
+        center center / cover no-repeat fixed;
+    }
 
-        .scroll-indicator {
-            margin-top: 40px;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            animation: pulse 2s infinite;
-        }
+    .welcome-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
 
-        /* بخش‌بندی بدنه منو */
-        .menu-container {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 0 20px 80px;
-        }
+    .welcome-logo {
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid var(--gold);
+      box-shadow: 0 10px 30px rgba(201, 164, 92, 0.35);
+      margin-bottom: 24px;
+      background: #fff;
+      animation: pulseGold 2s infinite alternate;
+    }
 
-        .category-header {
-            text-align: center;
-            margin: 60px 0 40px;
-            position: relative;
-        }
+    @keyframes pulseGold {
+      0% { box-shadow: 0 10px 25px rgba(201, 164, 92, 0.25); }
+      100% { box-shadow: 0 10px 40px rgba(201, 164, 92, 0.5); }
+    }
 
-        .category-subtitle {
-            font-family: var(--font-serif);
-            font-size: 0.75rem;
-            color: var(--text-gold);
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-            display: block;
-        }
+    .welcome-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 12px;
+      text-shadow: 0 4px 15px rgba(0,0,0,0.85);
+    }
 
-        .category-title {
-            font-size: 1.8rem;
-            font-weight: 400;
-            letter-spacing: 1px;
-            position: relative;
-            display: inline-block;
-            padding-bottom: 12px;
-            color: #ffffff;
-        }
+    .welcome-tagline {
+      font-size: 1.15rem;
+      color: #f7eed7;
+      max-width: 500px;
+      margin-bottom: 32px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+      line-height: 1.8;
+    }
 
-        .category-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 25%;
-            width: 50%;
-            height: 1.5px;
-            background: linear-gradient(to right, transparent, var(--gold-primary), transparent);
-        }
+    .enter-menu-btn {
+      padding: 14px 42px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #111;
+      background: linear-gradient(180deg, var(--gold-2), var(--gold));
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(201,164,92,0.35);
+      transition: all 0.3s ease;
+      letter-spacing: 0.5px;
+    }
 
-        /* کارت آیتم فوق لوکس */
-        .luxury-item {
-            display: flex;
-            background: var(--surface-glass);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            margin-bottom: 24px;
-            overflow: hidden;
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
+    .enter-menu-btn:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 12px 30px rgba(201,164,92,0.5);
+    }
 
-        .luxury-item:hover {
-            transform: translateY(-4px);
-            border-color: rgba(197, 160, 89, 0.4);
-            box-shadow: 0 12px 40px rgba(197, 160, 89, 0.08);
-        }
+    /* استایل‌های بخش منوی اصلی */
+    .menu-wrapper {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
 
-        .image-container {
-            width: 120px;
-            min-width: 120px;
-            position: relative;
-            overflow: hidden;
-        }
+    .menu-wrapper.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-        .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(15%) contrast(105%);
-            transition: transform 0.6s ease;
-        }
+    .hero-header{
+      position: relative;
+      min-height: 280px;
+      padding: 28px 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: transparent;
+      border-bottom: 1px solid rgba(201,164,92,.25);
+      overflow: hidden;
+    }
 
-        .luxury-item:hover .image-container img {
-            transform: scale(1.08);
-        }
+    .hero-overlay{
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.45)),
+        radial-gradient(circle at top, rgba(201,164,92,.08), transparent 36%);
+    }
 
-        /* هاله نور طلایی روی عکس در حالت هوور */
-        .image-container::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(to left, rgba(10,10,11,0.4), transparent);
-        }
+    .hero-content{
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      width: 100%;
+    }
 
-        .item-details {
-            padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+    .logo-wrap{
+      display:flex;
+      justify-content:center;
+      margin-bottom:10px;
+    }
 
-        .item-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 8px;
-        }
+    .logo{
+      width:96px;
+      height:96px;
+      object-fit:cover;
+      border-radius:50%;
+      border:3px solid var(--gold);
+      background:#fff;
+      box-shadow:0 8px 20px rgba(0,0,0,.45);
+    }
 
-        .item-name {
-            font-size: 1.15rem;
-            font-weight: 500;
-            color: var(--text-light);
-        }
+    .hero-header h1{
+      color:#fff;
+      font-size:1.85rem;
+      line-height:1.2;
+      margin-bottom:8px;
+      letter-spacing:.5px;
+      text-shadow:0 2px 12px rgba(0,0,0,.65);
+    }
 
-        .item-price {
-            font-family: var(--font-serif);
-            color: var(--text-gold);
-            font-weight: 600;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-        }
+    .welcome-text{
+      color:#f6e8c8;
+      font-size:0.95rem;
+      max-width: 720px;
+      margin: 0 auto;
+      text-shadow:0 2px 10px rgba(0,0,0,.55);
+    }
 
-        .item-desc {
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            font-weight: 300;
-            line-height: 1.6;
-        }
+    .action-bar{
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      align-items:center;
+      flex-wrap:wrap;
+      padding:12px 12px 0;
+      margin-top:8px;
+    }
 
-        /* پچ وی‌آی‌پی برای امضای کافه */
-        .signature-badge {
-            align-self: flex-start;
-            font-size: 0.65rem;
-            letter-spacing: 1px;
-            color: var(--text-gold);
-            border: 1px solid var(--gold-primary);
-            padding: 2px 8px;
-            border-radius: 4px;
-            margin-top: 10px;
-            text-transform: uppercase;
-        }
+    .action-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(201,164,92,.5);
+      background: linear-gradient(180deg, rgba(201,164,92,.14), rgba(201,164,92,.06));
+      color:var(--gold-2);
+      font-weight:700;
+      font-size:.92rem;
+      box-shadow:0 6px 18px rgba(0,0,0,.18);
+      transition:.25s ease;
+      white-space:nowrap;
+    }
 
-        /* دکمه پیشخدمت لوکس (VIP Call) */
-        .vip-button {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            background: linear-gradient(135deg, var(--gold-primary) 0%, #a47e3c 100%);
-            color: #000;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            cursor: pointer;
-            box-shadow: 0 10px 25px rgba(197, 160, 89, 0.4);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            z-index: 100;
-            transition: all 0.3s ease;
-        }
+    .action-btn:hover{
+      transform:translateY(-2px);
+      background: linear-gradient(180deg, rgba(201,164,92,.2), rgba(201,164,92,.08));
+      box-shadow:0 10px 24px rgba(0,0,0,.28);
+    }
 
-        .vip-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 30px rgba(197, 160, 89, 0.6);
-        }
+    .action-icon{
+      width:18px;
+      height:18px;
+      display:block;
+      flex:0 0 auto;
+    }
 
-        /* فوتر */
-        footer {
-            background-color: #050506;
-            border-top: 1px solid var(--border-color);
-            padding: 60px 20px;
-            text-align: center;
-        }
+    .tabs-wrapper{
+      position: sticky;
+      top: 0;
+      z-index: 45;
+      background: rgba(11,11,11,0.75);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      overflow-x:auto;
+      white-space:nowrap;
+      padding:10px 8px;
+      scrollbar-width:none;
+    }
 
-        .footer-note {
-            font-family: var(--font-serif);
-            font-size: 0.9rem;
-            color: var(--text-gold);
-            letter-spacing: 3px;
-            margin-bottom: 20px;
-        }
+    .tabs-wrapper::-webkit-scrollbar{
+      display:none;
+    }
 
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin-bottom: 30px;
-        }
+    .tabs{
+      display:flex;
+      gap:8px;
+      width:max-content;
+    }
 
-        .social-icons a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            transition: color 0.3s ease;
-        }
+    .tab-btn{
+      border:1px solid rgba(201,164,92,.6);
+      background: rgba(0,0,0,.50);
+      color:var(--gold);
+      padding:10px 16px;
+      border-radius:999px;
+      cursor:pointer;
+      font-size:.95rem;
+      transition:.25s ease;
+      white-space:nowrap;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.02);
+    }
 
-        .social-icons a:hover {
-            color: var(--text-gold);
-        }
+    .tab-btn:hover{
+      transform:translateY(-1px);
+      border-color:rgba(226,192,122,.95);
+      background: rgba(20,20,20,.60);
+    }
 
-        .copyright {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-        }
+    .tab-btn.active{
+      background: linear-gradient(180deg, var(--gold-2), var(--gold));
+      color:#111;
+      font-weight:800;
+      box-shadow:0 10px 22px rgba(201,164,92,.28);
+      border-color: transparent;
+    }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
+    .container{
+      max-width:980px;
+      margin:0 auto;
+      padding:18px 14px 42px;
+      position:relative;
+      z-index:1;
+    }
 
-        @media (max-width: 600px) {
-            header { height: 55vh; }
-            .brand-title { font-size: 1.9rem; letter-spacing: 4px; }
-            .logo-wrapper { width: 130px; height: 130px; }
-            .luxury-item { flex-direction: column; }
-            .image-container { width: 100%; height: 180px; }
-            .image-container::after { background: linear-gradient(to top, rgba(10,10,11,0.8), transparent); }
-            .vip-button { bottom: 20px; left: 20px; padding: 10px 18px; font-size: 0.75rem; }
-        }
-    </style>
+    .tab-content{
+      display:none;
+      animation:fade .25s ease;
+    }
+
+    .tab-content.active{
+      display:block;
+    }
+
+    /* کارت‌های بخش منو کاملاً شفاف */
+    .section-card{
+      position:relative;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(0, 0, 0, 0.45) 100%);
+      border: 1px solid rgba(201, 164, 92, 0.3);
+      border-radius:22px;
+      padding:18px 16px;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      margin-bottom: 20px;
+    }
+
+    .section-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background: radial-gradient(circle at top right, rgba(201,164,92,.08), transparent 28%);
+    }
+
+    .section-title{
+      position:relative;
+      color:var(--gold-2);
+      text-align:center;
+      margin-bottom:18px;
+      font-size:1.35rem;
+      border-bottom:1px solid rgba(201,164,92,.22);
+      padding-bottom:10px;
+      letter-spacing:.3px;
+    }
+
+    .section-hero-img{
+      width:100%;
+      height:180px;
+      object-fit:cover;
+      border-radius:16px;
+      margin-bottom:16px;
+      border:1px solid rgba(201,164,92,.22);
+      box-shadow:0 8px 18px rgba(0,0,0,.24);
+      filter: brightness(1.06) contrast(1.1);
+    }
+
+    .menu-list{
+      list-style:none;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    /* آیتم‌های منو کاملاً شفاف */
+    .menu-item{
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(0, 0, 0, 0.35) 100%);
+      border:1px solid rgba(255,255,255,.05);
+      border-radius:14px;
+      padding:13px 14px;
+      color:var(--text);
+      transition:.22s ease;
+      box-shadow:0 4px 14px rgba(0,0,0,.18);
+    }
+
+    .menu-item:hover{
+      transform:translateY(-2px);
+      border-color:rgba(201,164,92,.45);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(0, 0, 0, 0.45) 100%);
+      box-shadow:0 10px 24px rgba(0,0,0,.28);
+    }
+
+    .menu-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:12px;
+    }
+
+    .item-name{
+      font-size:1rem;
+      font-weight:800;
+      color:var(--text);
+      display:block;
+      flex:1;
+    }
+
+    .item-price{
+      flex-shrink:0;
+      color:#111;
+      background: linear-gradient(180deg, var(--gold-2), var(--gold));
+      border-radius:999px;
+      padding:4px 10px;
+      font-size:.88rem;
+      font-weight:800;
+      min-width:74px;
+      text-align:center;
+      box-shadow:0 6px 14px rgba(201,164,92,.18);
+      direction: ltr; /* تضمین جهت صحیح نمایش قیمت و T */
+      display: inline-block;
+    }
+
+    .item-desc{
+      margin-top:6px;
+      color:var(--muted);
+      font-size:.9rem;
+      line-height:1.8;
+    }
+
+    footer{
+      text-align:center;
+      color:#cfcfcf;
+      font-size:.85rem;
+      padding:18px 10px 30px;
+      position:relative;
+      z-index:1;
+      text-shadow:0 2px 10px rgba(0,0,0,.35);
+    }
+
+    @keyframes fade{
+      from{ opacity:0; transform:translateY(6px); }
+      to{ opacity:1; transform:translateY(0); }
+    }
+
+    @media (max-width: 600px){
+      .logo{
+        width:88px;
+        height:88px;
+      }
+
+      .hero-header h1{
+        font-size:1.65rem;
+      }
+
+      .welcome-text{
+        font-size:.92rem;
+      }
+
+      .tab-btn{
+        font-size:.87rem;
+        padding:9px 14px;
+      }
+
+      .section-title{
+        font-size:1.18rem;
+      }
+
+      .item-name{
+        font-size:.94rem;
+      }
+
+      .item-desc{
+        font-size:.84rem;
+      }
+
+      .item-price{
+        min-width:68px;
+        padding:4px 9px;
+        font-size:.82rem;
+      }
+
+      .section-hero-img{
+        height:140px;
+      }
+
+      .welcome-title {
+        font-size: 2rem;
+      }
+      .welcome-tagline {
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- دکمه ویژه فراخوانی پیشخدمت -->
-    <button class="vip-button" onclick="alert('پیشخدمت به زودی در کنار میز شما حضور خواهد یافت.')">
-        <span>✦</span> VIP CALL
-    </button>
+  <!-- صفحه خوش‌آمدگویی ورودی (Welcome Intro) -->
+  <div class="welcome-screen" id="welcomeScreen">
+    <img
+      src="https://s34.picofile.com/file/8491073084/Screenshot_%DB%B2%DB%B0%DB%B2%DB%B6%DB%B0%DB%B7%DB%B2%DB%B0_%DB%B2%DB%B0%DB%B0%DB%B8%DB%B2%DB%B7_Instagram.jpg"
+      alt="لوگوی کافه پیانو"
+      class="welcome-logo"
+    >
+    <h2 class="welcome-title">کافه پیانو</h2>
+    <p class="welcome-tagline">
+      سمفونی دل‌نشینی از عطر دانه قهوه و آرامش پیانو.<br>
+      همراه ما باشید برای نوشیدن یک فنجان حس خوب.
+    </p>
+    <button class="enter-menu-btn" onclick="startExperience()">مشاهده منو</button>
+  </div>
 
-    <header>
-        <div class="logo-wrapper">
-            <!-- تصویر لوگوی کافه پیانو -->
-            <img src="https://i.postimg.cc/85zM6m7F/piano-logo.png" alt="CAFE PIANO LOGO">
+  <!-- محتوای اصلی منو -->
+  <div class="menu-wrapper" id="menuWrapper">
+    <header class="hero-header">
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content">
+        <div class="logo-wrap">
+          <img
+            src="https://s34.picofile.com/file/8491073084/Screenshot_%DB%B2%DB%B0%DB%B2%DB%B6%DB%B0%DB%B7%DB%B2%DB%B0_%DB%B2%DB%B0%DB%B0%DB%B8%DB%B2%DB%B7_Instagram.jpg"
+            alt="لوگوی کافه پیانو"
+            class="logo"
+          >
         </div>
-        <h1 class="brand-title">Cafe Piano</h1>
-        <p class="brand-subtitle">The Symphony of Taste</p>
-        <div class="scroll-indicator">اسکرول به پایین • SLIDE DOWN</div>
+
+        <h1>کافه پیانو</h1>
+        <div class="welcome-text">
+          به منوی دیجیتال کافه پیانو خوش آمدید؛
+          جایی برای تجربه‌ی طعم‌های خاص، نوشیدنی‌های حرفه‌ای و فضایی گرم و دل‌نشین.
+        </div>
+
+        <div class="action-bar">
+          <a class="action-btn" href="tel:+989308105265">
+            📞 تماس
+          </a>
+
+          <a class="action-btn" href="https://www.instagram.com/piano__cafe__?igsh=OHVlM2s5ZWEzYmZ1" target="_blank" rel="noopener">
+            <svg class="action-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M7 2.5A4.5 4.5 0 0 0 2.5 7v10A4.5 4.5 0 0 0 7 21.5h10A4.5 4.5 0 0 0 21.5 17V7A4.5 4.5 0 0 0 17 2.5H7zm10 1.5A3 3 0 0 1 20 7v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h10z"/>
+              <path fill="currentColor" d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 1.5a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7z"/>
+              <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>
+            </svg>
+            اینستاگرام
+          </a>
+        </div>
+      </div>
     </header>
 
-    <div class="menu-container">
+    <div class="tabs-wrapper">
+      <div class="tabs">
+        <button class="tab-btn active" onclick="openTab('hot', this)">نوشیدنی‌های گرم</button>
+        <button class="tab-btn" onclick="openTab('cold', this)">نوشیدنی‌های سرد</button>
+        <button class="tab-btn" onclick="openTab('hookah', this)">قلیان</button>
+        <button class="tab-btn" onclick="openTab('shake', this)">شیک</button>
+        <button class="tab-btn" onclick="openTab('pasta', this)">پاستا</button>
+        <button class="tab-btn" onclick="openTab('pizza', this)">پیتزا</button>
+        <button class="tab-btn" onclick="openTab('salad', this)">سالاد</button>
+        <button class="tab-btn" onclick="openTab('breakfast', this)">صبحانه</button>
+        <button class="tab-btn" onclick="openTab('starter', this)">پیش‌غذا</button>
+      </div>
+    </div>
 
-        <!-- بخش اول: بار گرم -->
-        <div class="category-header">
-            <span class="category-subtitle">ACT I</span>
-            <h2 class="category-title">PRELUDE • بار گرم</h2>
+    <div class="container">
+
+      <!-- بخش نوشیدنی‌های گرم -->
+      <section id="hot" class="tab-content active">
+        <div class="section-card">
+          <img class="section-hero-img" src="https://s34.picofile.com/file/8491085376/%DA%AF%D8%B1%D8%B1%D9%85.jpg" alt="نوشیدنی‌های گرم">
+          <h2 class="section-title">نوشیدنی‌های گرم</h2>
+          <ul class="menu-list">
+            <li class="menu-item"><div class="menu-head"><span class="item-name">اسپرسو سینگل</span><span class="item-price">60000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">اسپرسو دبل</span><span class="item-price">80000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">اسپرسو کن پانا</span><span class="item-price">—</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">اسپرسو ماکیاتو</span><span class="item-price">—</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">قهوه فرانسه</span><span class="item-price">110000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">کورتادو</span><span class="item-price">125000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">فلت وایت</span><span class="item-price">—</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">لانگ بلک</span><span class="item-price">100000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">موکا</span><span class="item-price">135000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">کارامل ماکیاتو</span><span class="item-price">135000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">شیر عسل دارچین</span><span class="item-price">—</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">شیر پسته</span><span class="item-price">140000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">گلد با شیر</span><span class="item-price">120000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">قهوه ترک استانبولی</span><span class="item-price">105000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">آفوگاتو (مخصوص پیانو)</span><span class="item-price">170000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">ماسالا</span><span class="item-price">110000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">هات چاکلت</span><span class="item-price">110000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">کینگ چاکلت</span><span class="item-price">130000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">چای ماچا</span><span class="item-price">80000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">چای سیاه</span><span class="item-price">55000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">چای کرک</span><span class="item-price">110000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">چای عربی مخصوص</span><span class="item-price">—</span></div></li>
+          </ul>
         </div>
+      </section>
 
-        <div class="luxury-item">
-            <div class="image-container">
-                <img src="https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?w=400" alt="لته آرت">
-            </div>
-            <div class="item-details">
-                <div class="item-top">
-                    <span class="item-name">سیگنچر لته آرت (Signature Latte)</span>
-                    <span class="item-price">۱۱۵,۰۰۰ تومان</span>
-                </div>
-                <p class="item-desc">اسپرسو ریسترتو ۱۰۰٪ عربیکا تک‌خاستگاه، فوم مخملی شیر داغ و هنر لته آرت اختصاصی باریستا.</p>
-                <span class="signature-badge">CHEF SPECIAL</span>
-            </div>
+      <!-- بخش نوشیدنی‌های سرد -->
+      <section id="cold" class="tab-content">
+        <div class="section-card">
+          <img class="section-hero-img" src="https://s34.picofile.com/file/8491085368/%D8%B3%D8%B1%D8%B1%D8%AF.jpg" alt="نوشیدنی‌های سرد">
+          <h2 class="section-title">نوشیدنی‌های سرد</h2>
+          <ul class="menu-list">
+            <li class="menu-item"><div class="menu-head"><span class="item-name">آیس آمریکانو</span><span class="item-price">100000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">آیس لته</span><span class="item-price">150000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">آیس کافی</span><span class="item-price">170000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">لیموناد</span><span class="item-price">135000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">موهیتو</span><span class="item-price">155000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">رد موهیتو</span><span class="item-price">170000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">آیس لته لوتوس</span><span class="item-price">—</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">آیس لته فندقی</span><span class="item-price">165000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">بلو کاراسائو</span><span class="item-price">—</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">آیس کارامل ماکیاتو</span><span class="item-price">170000 T</span></div></li>
+          </ul>
         </div>
+      </section>
 
-        <div class="luxury-item">
-            <div class="image-container">
-                <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400" alt="آمریکانو">
-            </div>
-            <div class="item-details">
-                <div class="item-top">
-                    <span class="item-name">آمریکانو اسپشیالتی</span>
-                    <span class="item-price">۹۵,۰۰۰ تومان</span>
-                </div>
-                <p class="item-desc">دبل شات اسپرسو عصاره‌گیری شده بر پایه دانه زیرو کلینیکال و آب تصفیه شده دمای ۹۲ درجه.</p>
-            </div>
+      <!-- بخش قلیان -->
+      <section id="hookah" class="tab-content">
+        <div class="section-card">
+          <img class="section-hero-img" src="https://s34.picofile.com/file/8491085442/%D9%82%D9%84%D9%82%D9%84.jpg" alt="قلیان">
+          <h2 class="section-title">قلیان</h2>
+          <ul class="menu-list">
+            <li class="menu-item"><div class="menu-head"><span class="item-name">بیسکوییت</span><span class="item-price">180000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">موهیتو</span><span class="item-price">180000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">لاو</span><span class="item-price">180000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">توت فرنگی بستنی</span><span class="item-price">180000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">دو سیب</span><span class="item-price">180000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">دو سیب آلبالو</span><span class="item-price">180000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">لیدی</span><span class="item-price">180000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">شب های مسکو</span><span class="item-price">180000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">پرتقال نعنا</span><span class="item-price">180000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">آدامس نعنا</span><span class="item-price">180000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">قلیان مخصوص کافه پیانو</span><span class="item-price">180000 T</span></div></li>
+          </ul>
         </div>
+      </section>
 
-
-        <!-- بخش دوم: بار سرد -->
-        <div class="category-header">
-            <span class="category-subtitle">ACT II</span>
-            <h2 class="category-title">SYMPHONY • هارمونی سرد</h2>
+      <!-- بخش شیک -->
+      <section id="shake" class="tab-content">
+        <div class="section-card">
+          <img class="section-hero-img" src="https://s34.picofile.com/file/8491085418/%D8%B4%DB%8C%DB%8C%DB%8C%DB%8C%DA%A9.jpg" alt="شیک">
+          <h2 class="section-title">شیک</h2>
+          <ul class="menu-list">
+            <li class="menu-item"><div class="menu-head"><span class="item-name">نوتلا</span><span class="item-price">210000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">شکلات فندقی</span><span class="item-price">190000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">موز شکلات</span><span class="item-price">215000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">کره بادام زمینی</span><span class="item-price">195000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">آناناس</span><span class="item-price">190000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">کیت کت</span><span class="item-price">195000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">توت فرنگی</span><span class="item-price">210000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">کرنبری</span><span class="item-price">—</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">انبه</span><span class="item-price">210000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">قهوه</span><span class="item-price">190000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">توت فرنگی شکلات</span><span class="item-price">215000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">بالشتکی</span><span class="item-price">190000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">موز انبه</span><span class="item-price">250000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">لوتوس</span><span class="item-price">210000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">اورئو</span><span class="item-price">200000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">نارگیل فندقی</span><span class="item-price">220000 T</span></div></li>
+          </ul>
         </div>
+      </section>
 
-        <div class="luxury-item">
-            <div class="image-container">
-                <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400" alt="آیس لته">
-            </div>
-            <div class="item-details">
-                <div class="item-top">
-                    <span class="item-name">آیس لته پریمیوم</span>
-                    <span class="item-price">۱۲۰,۰۰۰ تومان</span>
-                </div>
-                <p class="item-desc">ترکیب متعادل اسپرسوی خنک، شیر سرد محلی و کریستال‌های یخ با لایه‌ای از فوم سرد شیر سبک.</p>
-            </div>
+      <!-- بخش پاستا -->
+      <section id="pasta" class="tab-content">
+        <div class="section-card">
+          <img class="section-hero-img" src="https://s34.picofile.com/file/8491085392/%D9%BE%D8%A7%D8%A7%D8%B3%D8%AA%D8%A7%D8%A7%D8%A7%D8%A7.jpg" alt="پاستا">
+          <h2 class="section-title">پاستا</h2>
+          <ul class="menu-list">
+            <li class="menu-item"><div class="menu-head"><span class="item-name">پاستا چیکن آلفردو</span><span class="item-price">—</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">پاستا چیکن مخصوص پیانو</span><span class="item-price">425000 T</span></div></li>
+          </ul>
         </div>
+      </section>
 
-
-        <!-- بخش سوم: غدا و پیانو سایدز -->
-        <div class="category-header">
-            <span class="category-subtitle">ACT III</span>
-            <h2 class="category-title">SONATA • نواهای داغ</h2>
+      <!-- بخش پیتزا -->
+      <section id="pizza" class="tab-content">
+        <div class="section-card">
+          <img class="section-hero-img" src="https://s34.picofile.com/file/8491085476/%D9%BE%DB%8C%DB%8C%D8%AA%D8%B2%D8%A7%D8%A7%D8%A7%D8%A7.jpg" alt="پیتزا">
+          <h2 class="section-title">پیتزا</h2>
+          <ul class="menu-list">
+            <li class="menu-item">
+              <div class="menu-head"><span class="item-name">پیتزا پپرونی</span><span class="item-price">458000 T</span></div>
+              <div class="item-desc">سس پومودره - پپرونی 90% - پنیر میکس</div>
+            </li>
+            <li class="menu-item">
+              <div class="menu-head"><span class="item-name">پیتزا بونو</span><span class="item-price">405000 T</span></div>
+              <div class="item-desc">سس پومودره - ژامبون مرغ و گوشت 90% - پنیر میکس</div>
+            </li>
+            <li class="menu-item">
+              <div class="menu-head"><span class="item-name">پیتزا مخصوص (پیانو)</span><span class="item-price">738000 T</span></div>
+              <div class="item-desc">سس خامه - گوشت ریش شده - مرغ مرینت شده - پنیر میکس</div>
+            </li>
+            <li class="menu-item">
+              <div class="menu-head"><span class="item-name">پیتزا بیکن</span><span class="item-price">498000 T</span></div>
+              <div class="item-desc">سس پومودره - بیکن 90% - پنیر میکس</div>
+            </li>
+            <li class="menu-item">
+              <div class="menu-head"><span class="item-name">پیتزا بیکن چدار</span><span class="item-price">498000 T</span></div>
+              <div class="item-desc">سس چدار - بیکن 90% - پنیر میکس</div>
+            </li>
+            <li class="menu-item">
+              <div class="menu-head"><span class="item-name">پیتزا روستیکا</span><span class="item-price">658000 T</span></div>
+              <div class="item-desc">سس خامه - گوشت ریش شده - پنیر میکس</div>
+            </li>
+            <li class="menu-item">
+              <div class="menu-head"><span class="item-name">پیتزا ۴ سیزن</span><span class="item-price">578000 T</span></div>
+              <div class="item-desc">سس پومودره - ژامبون مرغ و گوشت 90% - گوشت ریش شده - مرغ مرینت شده - پپرونی 90% - پنیر میکس</div>
+            </li>
+            <li class="menu-item">
+              <div class="menu-head"><span class="item-name">پیتزا چیکن آلفردو</span><span class="item-price">508000 T</span></div>
+              <div class="item-desc">سس خامه - مرغ مرینت شده - پنیر میکس</div>
+            </li>
+            <li class="menu-item">
+              <div class="menu-head"><span class="item-name">پیتزا توسکانا</span><span class="item-price">518000 T</span></div>
+              <div class="item-desc">سس پومودره - مرغ مرینت شده - پنیر میکس</div>
+            </li>
+            <li class="menu-item">
+              <div class="menu-head"><span class="item-name">نان سیر</span><span class="item-price">—</span></div>
+              <div class="item-desc">سس سیر - پنیر میکس</div>
+            </li>
+          </ul>
         </div>
+      </section>
 
-        <div class="luxury-item">
-            <div class="image-container">
-                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400" alt="پیتزا مخصوص">
-            </div>
-            <div class="item-details">
-                <div class="item-top">
-                    <span class="item-name">پیتزا ناپولیتن مخصوص پیانو</span>
-                    <span class="item-price">۲۸۵,۰۰۰ تومان</span>
-                </div>
-                <p class="item-desc">خمیر دست‌ساز ۴۸ ساعت تخمیر، سس گوجه سن‌مارزانو، پنیر موزارلا دی بوفالا تازه و روغن ریحان وحشی.</p>
-                <span class="signature-badge">RESERVE ONLY</span>
-            </div>
+      <!-- بخش سالاد -->
+      <section id="salad" class="tab-content">
+        <div class="section-card">
+          <img class="section-hero-img" src="https://s34.picofile.com/file/8491085384/%D8%B3%D8%A7%D9%84%D8%A7%D8%A7%D8%A7%D8%AF.jpg" alt="سالاد">
+          <h2 class="section-title">سالاد</h2>
+          <ul class="menu-list">
+            <li class="menu-item">
+              <div class="menu-head">
+                <span class="item-name">سالاد سزار</span>
+                <span class="item-price">—</span>
+              </div>
+              <div class="item-desc">کاهو رسمی - مرغ مرینت شده - گوجه چری - نان کروتان - زیتون سبز</div>
+            </li>
+            <li class="menu-item">
+              <div class="menu-head">
+                <span class="item-name">سالاد سزار سوخاری</span>
+                <span class="item-price">—</span>
+              </div>
+              <div class="item-desc">کاهو رسمی - فیله سوخاری پنیری - گوجه چری - نان کروتان - زیتون سبز</div>
+            </li>
+            <li class="menu-item">
+              <div class="menu-head">
+                <span class="item-name">سالاد سبز (گردو) (مخصوص پیانو)</span>
+                <span class="item-price">—</span>
+              </div>
+              <div class="item-desc">کاهو پیچ - میوه فصل - گوجه چری - گردو رست شده - مرغ مرینت شده - کنجد - سس ریحان</div>
+            </li>
+          </ul>
         </div>
+      </section>
 
-        <div class="luxury-item">
-            <div class="image-container">
-                <img src="https://images.unsplash.com/photo-1518013045958-41303d59e53c?w=400" alt="سیب تنوری">
-            </div>
-            <div class="item-details">
-                <div class="item-top">
-                    <span class="item-name">سیب‌زمینی تنوری با چدار و رزماری</span>
-                    <span class="item-price">۱۲۵,۰۰۰ تومان</span>
-                </div>
-                <p class="item-desc">سیب‌زمینی‌های تنوری طعم‌دار شده با رزماری تازه، سس دیپ پنیر چدار دست‌ساز گرم و چایوز تازه.</p>
-            </div>
+      <!-- بخش صبحانه -->
+      <section id="breakfast" class="tab-content">
+        <div class="section-card">
+          <img class="section-hero-img" src="https://s34.picofile.com/file/8491085350/%D8%B5%D8%A8%D9%88%D9%86%D9%87.jpg" alt="صبحانه">
+          <h2 class="section-title">صبحانه</h2>
+          <ul class="menu-list">
+            <li class="menu-item">
+              <div class="menu-head">
+                <span class="item-name">املت</span>
+                <span class="item-price">140000 T</span>
+              </div>
+              <div class="item-desc">پوره گوجه فرنگی - تخم مرغ</div>
+            </li>
+            <li class="menu-item">
+              <div class="menu-head">
+                <span class="item-name">نیمرو</span>
+                <span class="item-price">110000 T</span>
+              </div>
+            </li>
+            <li class="menu-item">
+              <div class="menu-head">
+                <span class="item-name">صبحانه انگلیسی</span>
+                <span class="item-price">388000 T</span>
+              </div>
+              <div class="item-desc">سوسیس شکاری - سیب زمینی سرخ شده - خوراک لوبیا - نیمرو دو عدد</div>
+            </li>
+            <li class="menu-item">
+              <div class="menu-head">
+                <span class="item-name">سوسیس تخم مرغ</span>
+                <span class="item-price">195000 T</span>
+              </div>
+              <div class="item-desc">سوسیس شکاری - تخم مرغ</div>
+            </li>
+            <li class="menu-item">
+              <div class="menu-head">
+                <span class="item-name">بشقاب سرد ایرانی</span>
+                <span class="item-price">—</span>
+              </div>
+              <div class="item-desc">پنیر تبریزی - گوجه - خیار - تخم مرغ</div>
+            </li>
+            <li class="menu-item">
+              <div class="menu-head">
+                <span class="item-name">بیکن تخم مرغ</span>
+                <span class="item-price">—</span>
+              </div>
+            </li>
+            <li class="menu-item">
+              <div class="menu-head">
+                <span class="item-name">املت توپر</span>
+                <span class="item-price">—</span>
+              </div>
+            </li>
+            <li class="menu-item">
+              <div class="menu-head">
+                <span class="item-name">املت دنور</span>
+                <span class="item-price">—</span>
+              </div>
+              <div class="item-desc">پیاز - قارچ - گوجه - فلفل دلمه‌ای - ژامبون مرغ - پنیر پیتزا - تخم مرغ</div>
+            </li>
+          </ul>
         </div>
+      </section>
+
+      <!-- بخش پیش‌غذا -->
+      <section id="starter" class="tab-content">
+        <div class="section-card">
+          <img class="section-hero-img" src="https://s34.picofile.com/file/8491085400/%D9%BE%DB%8C%D8%B4%D8%B4_%D8%BA%D8%B0%D8%A7%D8%A7.jpg" alt="پیش‌غذا">
+          <h2 class="section-title">پیش‌غذا</h2>
+          <ul class="menu-list">
+            <li class="menu-item">
+              <div class="menu-head">
+                <span class="item-name">فرنچ فرایز</span>
+                <span class="item-price">210000 T</span>
+              </div>
+            </li>
+            <li class="menu-item">
+              <div class="menu-head">
+                <span class="item-name">آلفرد فرایز</span>
+                <span class="item-price">370000 T</span>
+              </div>
+            </li>
+            <li class="menu-item">
+              <div class="menu-head">
+                <span class="item-name">بشقاب مخصوص (پیانو)</span>
+                <span class="item-price">—</span>
+              </div>
+              <div class="item-desc">سیب زمینی - مرغ سوخاری - قارچ سوخاری - سوسیس انگشتی</div>
+            </li>
+            <li class="menu-item">
+              <div class="menu-head">
+                <span class="item-name">سیب زمینی تنوری</span>
+                <span class="item-price">395000 T</span>
+              </div>
+              <div class="item-desc">سیب زمینی - پنیر میکس - ژامبون مرغ و گوشت ۹۰٪</div>
+            </li>
+            <li class="menu-item">
+              <div class="menu-head">
+                <span class="item-name">فرنچ فرایز دیپ</span>
+                <span class="item-price">—</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
 
     </div>
 
     <footer>
-        <div class="footer-note">A Harmonious Gathering of Senses</div>
-        <div class="social-icons">
-            <a href="https://instagram.com/caffeepiano" target="_blank">INSTAGRAM</a>
-            <a href="#">RESERVATION</a>
-            <a href="#">ABOUT US</a>
-        </div>
-        <p class="copyright">© 2026 CAFE PIANO. Designed to perfection.</p>
     </footer>
+  </div>
+
+  <script>
+    // کنترل ورود کاربر و انتقال از صفحه خوش‌آمدگویی به منو
+    function startExperience() {
+      const welcome = document.getElementById('welcomeScreen');
+      const menu = document.getElementById('menuWrapper');
+      
+      welcome.classList.add('hidden');
+      menu.classList.add('visible');
+      
+      // اسکرول نرم به ابتدای هدر منو بعد از باز شدن
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 500);
+    }
+
+    // تغییر تب‌ها
+    function openTab(tabId, btn){
+      const contents = document.querySelectorAll('.tab-content');
+      const buttons = document.querySelectorAll('.tab-btn');
+
+      contents.forEach(content => content.classList.remove('active'));
+      buttons.forEach(button => button.classList.remove('active'));
+
+      document.getElementById(tabId).classList.add('active');
+      btn.classList.add('active');
+
+      btn.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest'
+      });
+    }
+  </script>
 
 </body>
 </html>
