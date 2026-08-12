@@ -38,14 +38,19 @@
       line-height:1.9;
       min-height:100vh;
       overflow-x:hidden;
+      background:var(--bg);
+    }
 
+    /* لایه بک‌گراند ثابت — همیشه عقب صفحه و بدون جابه‌جایی می‌مونه */
+    .fixed-bg{
+      position:fixed;
+      inset:0;
+      z-index:-1;
       background:
         linear-gradient(180deg, rgba(0,0,0,.60) 0%, rgba(0,0,0,.78) 100%),
         radial-gradient(circle at top, rgba(201,164,92,.12), transparent 38%),
         url("https://s34.picofile.com/file/8491076100/81083389_1c20_49b0_bc14_96e5d2fb85a1.png")
-        center center / cover no-repeat fixed;
-
-      background-attachment: fixed;
+        center center / cover no-repeat;
     }
 
     a{
@@ -69,7 +74,7 @@
         linear-gradient(180deg, rgba(0,0,0,.65) 0%, rgba(0,0,0,.85) 100%),
         radial-gradient(circle at center, rgba(201,164,92,.15), transparent 60%),
         url("https://s34.picofile.com/file/8491076100/81083389_1c20_49b0_bc14_96e5d2fb85a1.png")
-        center center / cover no-repeat fixed;
+        center center / cover no-repeat;
     }
 
     .welcome-screen.hidden {
@@ -480,6 +485,9 @@
 </head>
 <body>
 
+  <!-- لایه بک‌گراند ثابت -->
+  <div class="fixed-bg" aria-hidden="true"></div>
+
   <!-- صفحه خوش‌آمدگویی ورودی (Welcome Intro) -->
   <div class="welcome-screen" id="welcomeScreen">
     <img
@@ -489,8 +497,7 @@
     >
     <h2 class="welcome-title">کافه پیانو</h2>
     <p class="welcome-tagline">
-      سمفونی دل‌نشینی از عطر دانه قهوه و آرامش پیانو.<br>
-      همراه ما باشید برای نوشیدن یک فنجان حس خوب.
+      جایی که قهوه با هارمونی پیوند می‌خورد
     </p>
     <button class="enter-menu-btn" onclick="startExperience()">مشاهده منو</button>
   </div>
@@ -511,8 +518,7 @@
 
         <h1>کافه پیانو</h1>
         <div class="welcome-text">
-          به منوی دیجیتال کافه پیانو خوش آمدید؛
-          جایی برای تجربه‌ی طعم‌های خاص، نوشیدنی‌های حرفه‌ای و فضایی گرم و دل‌نشین.
+          جایی که قهوه با هارمونی پیوند می‌خورد
         </div>
 
         <div class="action-bar">
@@ -556,26 +562,26 @@
           <ul class="menu-list">
             <li class="menu-item"><div class="menu-head"><span class="item-name">اسپرسو سینگل</span><span class="item-price">60000 T</span></div></li>
             <li class="menu-item"><div class="menu-head"><span class="item-name">اسپرسو دبل</span><span class="item-price">80000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">اسپرسو کن پانا</span><span class="item-price">—</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">اسپرسو ماکیاتو</span><span class="item-price">—</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">اسپرسو کن پانا</span><span class="item-price">100000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">اسپرسو ماکیاتو</span><span class="item-price">100000 T</span></div></li>
             <li class="menu-item"><div class="menu-head"><span class="item-name">قهوه فرانسه</span><span class="item-price">110000 T</span></div></li>
             <li class="menu-item"><div class="menu-head"><span class="item-name">کورتادو</span><span class="item-price">125000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">فلت وایت</span><span class="item-price">—</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">فلت وایت</span><span class="item-price">130000 T</span></div></li>
             <li class="menu-item"><div class="menu-head"><span class="item-name">لانگ بلک</span><span class="item-price">100000 T</span></div></li>
             <li class="menu-item"><div class="menu-head"><span class="item-name">موکا</span><span class="item-price">135000 T</span></div></li>
             <li class="menu-item"><div class="menu-head"><span class="item-name">کارامل ماکیاتو</span><span class="item-price">135000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">شیر عسل دارچین</span><span class="item-price">—</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">شیر عسل دارچین</span><span class="item-price">140000 T</span></div></li>
             <li class="menu-item"><div class="menu-head"><span class="item-name">شیر پسته</span><span class="item-price">140000 T</span></div></li>
             <li class="menu-item"><div class="menu-head"><span class="item-name">گلد با شیر</span><span class="item-price">120000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">قهوه ترک استانبولی</span><span class="item-price">105000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">آفوگاتو (مخصوص پیانو)</span><span class="item-price">170000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">قهوه ترک استانبولی</span><span class="item-price">145000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">آفوگاتو (مخصوص پیانو)</span><span class="item-price">180000 T</span></div></li>
             <li class="menu-item"><div class="menu-head"><span class="item-name">ماسالا</span><span class="item-price">110000 T</span></div></li>
             <li class="menu-item"><div class="menu-head"><span class="item-name">هات چاکلت</span><span class="item-price">110000 T</span></div></li>
             <li class="menu-item"><div class="menu-head"><span class="item-name">کینگ چاکلت</span><span class="item-price">130000 T</span></div></li>
             <li class="menu-item"><div class="menu-head"><span class="item-name">چای ماچا</span><span class="item-price">80000 T</span></div></li>
             <li class="menu-item"><div class="menu-head"><span class="item-name">چای سیاه</span><span class="item-price">55000 T</span></div></li>
             <li class="menu-item"><div class="menu-head"><span class="item-name">چای کرک</span><span class="item-price">110000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">چای عربی مخصوص</span><span class="item-price">—</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">چای عربی مخصوص</span><span class="item-price">150000 T</span></div></li>
           </ul>
         </div>
       </section>
@@ -592,9 +598,9 @@
             <li class="menu-item"><div class="menu-head"><span class="item-name">لیموناد</span><span class="item-price">135000 T</span></div></li>
             <li class="menu-item"><div class="menu-head"><span class="item-name">موهیتو</span><span class="item-price">155000 T</span></div></li>
             <li class="menu-item"><div class="menu-head"><span class="item-name">رد موهیتو</span><span class="item-price">170000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">آیس لته لوتوس</span><span class="item-price">—</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">آیس لته لوتوس</span><span class="item-price">185000 T</span></div></li>
             <li class="menu-item"><div class="menu-head"><span class="item-name">آیس لته فندقی</span><span class="item-price">165000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">بلو کاراسائو</span><span class="item-price">—</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">بلو کاراسائو</span><span class="item-price">170000 T</span></div></li>
             <li class="menu-item"><div class="menu-head"><span class="item-name">آیس کارامل ماکیاتو</span><span class="item-price">170000 T</span></div></li>
           </ul>
         </div>
@@ -624,7 +630,7 @@
       <!-- بخش شیک -->
       <section id="shake" class="tab-content">
         <div class="section-card">
-          <img class="section-hero-img" src="https://s34.picofile.com/file/8491085418/%D8%B4%DB%8C%DB%8C%DB%8C%DB%8C%DA%A9.jpg" alt="شیک">
+          <img class="section-hero-img" src="https://s34.picofile.com/file/8491085418/%D8%B4%DB%8C%DB%8C%DB%8C%DA%A9.jpg" alt="شیک">
           <h2 class="section-title">شیک</h2>
           <ul class="menu-list">
             <li class="menu-item"><div class="menu-head"><span class="item-name">نوتلا</span><span class="item-price">210000 T</span></div></li>
@@ -634,7 +640,7 @@
             <li class="menu-item"><div class="menu-head"><span class="item-name">آناناس</span><span class="item-price">190000 T</span></div></li>
             <li class="menu-item"><div class="menu-head"><span class="item-name">کیت کت</span><span class="item-price">195000 T</span></div></li>
             <li class="menu-item"><div class="menu-head"><span class="item-name">توت فرنگی</span><span class="item-price">210000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">کرنبری</span><span class="item-price">—</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">کرنبری</span><span class="item-price">210000 T</span></div></li>
             <li class="menu-item"><div class="menu-head"><span class="item-name">انبه</span><span class="item-price">210000 T</span></div></li>
             <li class="menu-item"><div class="menu-head"><span class="item-name">قهوه</span><span class="item-price">190000 T</span></div></li>
             <li class="menu-item"><div class="menu-head"><span class="item-name">توت فرنگی شکلات</span><span class="item-price">215000 T</span></div></li>
@@ -653,8 +659,8 @@
           <img class="section-hero-img" src="https://s34.picofile.com/file/8491085392/%D9%BE%D8%A7%D8%A7%D8%B3%D8%AA%D8%A7%D8%A7%D8%A7%D8%A7.jpg" alt="پاستا">
           <h2 class="section-title">پاستا</h2>
           <ul class="menu-list">
-            <li class="menu-item"><div class="menu-head"><span class="item-name">پاستا چیکن آلفردو</span><span class="item-price">—</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">پاستا چیکن مخصوص پیانو</span><span class="item-price">425000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">پاستا چیکن آلفردو</span><span class="item-price">390000 T</span></div></li>
+            <li class="menu-item"><div class="menu-head"><span class="item-name">پاستا چیکن مخصوص پیانو</span><span class="item-price">435000 T</span></div></li>
           </ul>
         </div>
       </section>
@@ -702,7 +708,7 @@
               <div class="item-desc">سس پومودره - مرغ مرینت شده - پنیر میکس</div>
             </li>
             <li class="menu-item">
-              <div class="menu-head"><span class="item-name">نان سیر</span><span class="item-price">—</span></div>
+              <div class="menu-head"><span class="item-name">نان سیر</span><span class="item-price">398000 T</span></div>
               <div class="item-desc">سس سیر - پنیر میکس</div>
             </li>
           </ul>
@@ -718,21 +724,21 @@
             <li class="menu-item">
               <div class="menu-head">
                 <span class="item-name">سالاد سزار</span>
-                <span class="item-price">—</span>
+                <span class="item-price">430000 T</span>
               </div>
               <div class="item-desc">کاهو رسمی - مرغ مرینت شده - گوجه چری - نان کروتان - زیتون سبز</div>
             </li>
             <li class="menu-item">
               <div class="menu-head">
                 <span class="item-name">سالاد سزار سوخاری</span>
-                <span class="item-price">—</span>
+                <span class="item-price">470000 T</span>
               </div>
               <div class="item-desc">کاهو رسمی - فیله سوخاری پنیری - گوجه چری - نان کروتان - زیتون سبز</div>
             </li>
             <li class="menu-item">
               <div class="menu-head">
                 <span class="item-name">سالاد سبز (گردو) (مخصوص پیانو)</span>
-                <span class="item-price">—</span>
+                <span class="item-price">490000 T</span>
               </div>
               <div class="item-desc">کاهو پیچ - میوه فصل - گوجه چری - گردو رست شده - مرغ مرینت شده - کنجد - سس ریحان</div>
             </li>
@@ -749,7 +755,7 @@
             <li class="menu-item">
               <div class="menu-head">
                 <span class="item-name">املت</span>
-                <span class="item-price">140000 T</span>
+                <span class="item-price">170000 T</span>
               </div>
               <div class="item-desc">پوره گوجه فرنگی - تخم مرغ</div>
             </li>
@@ -776,26 +782,20 @@
             <li class="menu-item">
               <div class="menu-head">
                 <span class="item-name">بشقاب سرد ایرانی</span>
-                <span class="item-price">—</span>
+                <span class="item-price">230000 T</span>
               </div>
               <div class="item-desc">پنیر تبریزی - گوجه - خیار - تخم مرغ</div>
             </li>
             <li class="menu-item">
               <div class="menu-head">
                 <span class="item-name">بیکن تخم مرغ</span>
-                <span class="item-price">—</span>
-              </div>
-            </li>
-            <li class="menu-item">
-              <div class="menu-head">
-                <span class="item-name">املت توپر</span>
-                <span class="item-price">—</span>
+                <span class="item-price">220000 T</span>
               </div>
             </li>
             <li class="menu-item">
               <div class="menu-head">
                 <span class="item-name">املت دنور</span>
-                <span class="item-price">—</span>
+                <span class="item-price">350000 T</span>
               </div>
               <div class="item-desc">پیاز - قارچ - گوجه - فلفل دلمه‌ای - ژامبون مرغ - پنیر پیتزا - تخم مرغ</div>
             </li>
@@ -824,7 +824,7 @@
             <li class="menu-item">
               <div class="menu-head">
                 <span class="item-name">بشقاب مخصوص (پیانو)</span>
-                <span class="item-price">—</span>
+                <span class="item-price">455000 T</span>
               </div>
               <div class="item-desc">سیب زمینی - مرغ سوخاری - قارچ سوخاری - سوسیس انگشتی</div>
             </li>
@@ -838,7 +838,7 @@
             <li class="menu-item">
               <div class="menu-head">
                 <span class="item-name">فرنچ فرایز دیپ</span>
-                <span class="item-price">—</span>
+                <span class="item-price">355000 T</span>
               </div>
             </li>
           </ul>
