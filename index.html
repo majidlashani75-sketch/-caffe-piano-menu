@@ -1,888 +1,346 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>منوی دیجیتال کافه پیانو</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#140b07">
+<meta name="description" content="منوی دیجیتال کافه پیانو — جایی که قهوه با هارمونی پیوند می‌خورد">
+<title>منوی دیجیتال کافه پیانو</title>
+<link rel="icon" href="https://s34.picofile.com/file/8491073084/Screenshot_%DB%B2%DB%B0%DB%B2%DB%B6%DB%B0%DB%B7%DB%B2%DB%B0_%DB%B2%DB%B0%DB%B0%DB%B8%DB%B2%DB%B7_Instagram.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f5f0e6;--ink:#1f1a16;--mute:#6f655a;--wine:#8a3a14;--line:rgba(31,26,22,.14);--sand:#e3cfa8;--gold:#efc47e;--ebony:#17120f}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:"Vazirmatn",Tahoma,"Segoe UI",sans-serif;background:#140b07;color:var(--paper);line-height:1.9;min-height:100vh}
+body.locked{overflow:hidden;height:100vh}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+/* full-page photo backdrop (single GPU layer, no blur) */
+.bg{position:fixed;inset:0;z-index:-1;transform:translateZ(0);background:
+  radial-gradient(90% 55% at 50% 0%,rgba(150,62,16,.55),transparent 70%),
+  linear-gradient(180deg,rgba(20,11,7,.28) 0%,rgba(20,11,7,.48) 55%,rgba(20,11,7,.7) 100%),
+  url("https://s34.picofile.com/file/8491076100/81083389_1c20_49b0_bc14_96e5d2fb85a1.png") center/cover no-repeat}
 
-  <style>
-    :root{
-      --bg:#0b0b0b;
-      --bg-2:#111111;
-      --gold:#c9a45c;
-      --gold-2:#e2c07a;
-      --text:#f6f6f6;
-      --muted:#cfcfcf;
-      --line:rgba(201, 164, 92, 0.25);
-      --shadow:0 12px 30px rgba(0,0,0,.5);
-      --shadow-soft:0 8px 22px rgba(0,0,0,.3);
-      --radius:18px;
-      --hero-height:410px;
-    }
+/* welcome */
+.welcome{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;text-align:center;
+  padding:24px;color:var(--paper);background:var(--ebony);transition:opacity .5s ease;perspective:900px}
+.welcome::before{content:"";position:absolute;inset:0;background:url("https://s34.picofile.com/file/8491076100/81083389_1c20_49b0_bc14_96e5d2fb85a1.png") center/cover no-repeat;opacity:.6}
+.welcome::after{content:"";position:absolute;inset:0;background:radial-gradient(75% 60% at 50% 45%,rgba(20,11,7,.1),rgba(20,11,7,.9)),linear-gradient(180deg,rgba(150,62,16,.35),transparent 50%)}
+.welcome[hidden]{display:none}
+.entered .welcome{opacity:0;pointer-events:none}
+.tilt{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;transform-style:preserve-3d;transition:transform .2s ease-out}
+.medal{position:relative;width:128px;height:128px;transform-style:preserve-3d;animation:float 6s ease-in-out infinite}
+.medal::before,.medal::after{content:"";position:absolute;border-radius:50%;border:1px solid var(--gold)}
+.medal::before{inset:-12px;opacity:.55;transform:translateZ(-30px)}
+.medal::after{inset:-26px;opacity:.28;transform:translateZ(-60px)}
+.w-logo{width:128px;height:128px;border-radius:50%;object-fit:cover;background:#fff;border:3px solid var(--gold);padding:3px;transform:translateZ(30px);box-shadow:0 24px 40px rgba(0,0,0,.55)}
+@keyframes float{50%{transform:translateY(-8px)}}
+.w-title{margin-top:44px;font-size:clamp(2.8rem,13vw,4.8rem);font-weight:800;line-height:1.3;color:#f7e8c6;transform:translateZ(50px);
+  text-shadow:0 1px 0 #c9a45c,0 2px 0 #b8934f,0 3px 0 #a7843f,0 4px 0 #967535,0 5px 0 #85672c,0 14px 22px rgba(0,0,0,.65)}
+.w-rule{width:56px;height:1px;background:var(--gold);margin:14px 0 16px;transform:translateZ(30px)}
+.w-tag{font-weight:300;font-size:clamp(1rem,4vw,1.15rem);color:var(--sand);margin-bottom:40px;transform:translateZ(30px)}
+.enter{padding:14px 46px;border-radius:999px;background:linear-gradient(180deg,#fbf6ea,#e6dac0);color:var(--ink);font-weight:800;font-size:1.05rem;
+  transform:translateZ(45px);box-shadow:0 6px 0 #b9a87f,0 18px 28px rgba(0,0,0,.5);transition:box-shadow .12s,margin .12s}
+.enter:active{box-shadow:0 2px 0 #b9a87f,0 8px 14px rgba(0,0,0,.5);margin-top:4px}
 
-    *{
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
-    }
+/* header */
+.hero{max-width:960px;margin:0 auto;padding:36px 20px 24px;text-align:center}
+.brand{display:flex;align-items:center;justify-content:center;gap:14px}
+.logo{width:60px;height:60px;border-radius:50%;object-fit:cover;background:#fff;border:2px solid var(--gold);box-shadow:0 8px 18px rgba(0,0,0,.5)}
+.hero h1{font-size:clamp(2rem,8vw,2.9rem);font-weight:800;line-height:1.4;color:#f7e8c6;
+  text-shadow:0 1px 0 #c9a45c,0 2px 0 #b8934f,0 3px 0 #a7843f,0 4px 0 #967535,0 10px 16px rgba(0,0,0,.6)}
+.tag{color:var(--sand);font-weight:300;margin-top:2px}
+.actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+.act{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border:1px solid var(--gold);border-radius:999px;color:var(--gold);font-weight:500;font-size:.9rem;background:rgba(20,11,7,.5)}
+.act svg{width:17px;height:17px;fill:currentColor}
 
-    html{ scroll-behavior:smooth; }
+/* tabs */
+.tabs{position:sticky;top:0;z-index:50;background:#1a120e;border-block:1px solid rgba(226,197,138,.2);box-shadow:0 10px 20px -10px rgba(0,0,0,.7);overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs-in{display:flex;gap:4px;width:max-content;margin:0 auto;padding:0 12px}
+.tab{padding:13px 14px 11px;font-weight:500;font-size:.95rem;color:var(--sand);border-bottom:2px solid transparent;white-space:nowrap}
+.tab.on{color:#fff;font-weight:800;border-bottom-color:var(--gold)}
 
-    body{
-      font-family:"Vazirmatn", Tahoma, sans-serif;
-      color:var(--text);
-      line-height:1.9;
-      min-height:100vh;
-      overflow-x:hidden;
-      background:var(--bg);
-    }
+/* translucent slab floating above the photo */
+.wrap{position:relative;max-width:988px;margin:22px auto 44px;padding:0 14px}
+.sheet{position:relative;background:linear-gradient(180deg,rgba(28,17,12,.66),rgba(18,10,6,.74));color:var(--paper);
+  border:1px solid rgba(226,197,138,.28);border-radius:24px;padding:16px 18px 10px;
+  box-shadow:0 7px 0 rgba(122,84,30,.55),0 36px 60px -22px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,240,205,.12)}
+.page[hidden]{display:none}
+.page:not([hidden]){animation:flip .45s cubic-bezier(.2,.7,.2,1);transform-origin:50% 0}
+@keyframes flip{from{opacity:0;transform:perspective(900px) rotateX(-7deg) translateY(10px)}}
 
-    /* لایه بک‌گراند ثابت — همیشه عقب صفحه و بدون جابه‌جایی می‌مونه */
-    .fixed-bg{
-      position:fixed;
-      inset:0;
-      z-index:-1;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.60) 0%, rgba(0,0,0,.78) 100%),
-        radial-gradient(circle at top, rgba(201,164,92,.12), transparent 38%),
-        url("https://s34.picofile.com/file/8491076100/81083389_1c20_49b0_bc14_96e5d2fb85a1.png")
-        center center / cover no-repeat;
-    }
+/* illustrated 3D banner */
+.stage{position:relative;height:clamp(170px,38vw,250px);border-radius:18px;overflow:hidden;border:1px solid rgba(226,197,138,.28);
+  background:radial-gradient(60% 80% at 50% 75%,rgba(226,197,138,.25),transparent 72%),linear-gradient(135deg,rgba(150,62,16,.6),rgba(20,11,7,.55));
+  box-shadow:0 18px 30px -14px rgba(0,0,0,.7);transition:transform .4s ease}
+.stage::before{content:"";position:absolute;left:50%;bottom:9%;width:62%;height:16%;transform:translateX(-50%);border-radius:50%;
+  background:radial-gradient(closest-side,rgba(226,197,138,.55),rgba(226,197,138,0))}
+.stage::after{content:"";position:absolute;left:50%;bottom:11%;width:38%;height:7%;transform:translateX(-50%);border-radius:50%;
+  background:radial-gradient(closest-side,rgba(0,0,0,.65),rgba(0,0,0,0))}
+.art{position:absolute;inset:5% 0 12%;display:flex;justify-content:center;z-index:1}
+.art svg{height:100%;aspect-ratio:200/120;width:auto;animation:bob 5s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-6px)}}
+@media (hover:hover){.stage:hover{transform:perspective(900px) rotateX(5deg)}}
+.page h2{font-size:1.7rem;font-weight:800;line-height:1.5;margin:20px 0 4px;color:#fff3d6;
+  text-shadow:0 1px 0 #c9a45c,0 2px 0 #a7843f,0 8px 14px rgba(0,0,0,.5)}
+.items{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));column-gap:48px}
+.item{padding:14px 0 13px;border-bottom:1px solid rgba(226,197,138,.15)}
+.row{display:flex;align-items:baseline;gap:10px}
+.name{font-weight:600;font-size:1rem;line-height:1.7;color:#fbf3df}
+.item.sig .name::before{content:"";display:inline-block;width:6px;height:6px;background:var(--gold);transform:rotate(45deg);margin-inline-end:9px;vertical-align:middle}
+.dots{flex:1;min-width:14px;height:0;border-bottom:2px dotted rgba(226,197,138,.35);margin-bottom:.32em}
+.price{display:inline-flex;align-items:baseline;gap:5px;white-space:nowrap}
+.price b{font-weight:800;font-size:1.02rem;color:var(--gold)}
+.price small{font-size:.68rem;color:#b3a48a}
+.desc{margin-top:1px;padding-inline-end:48px;color:#cdbda0;font-size:.84rem;line-height:1.85}
 
-    a{
-      text-decoration:none;
-      color:inherit;
-    }
+.foot{text-align:center;color:var(--sand);font-weight:300;font-size:.85rem;padding:0 20px 44px}
 
-    /* صفحه خوش‌آمدگویی ورودی (Welcome Screen) */
-    .welcome-screen {
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 24px;
-      transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.5s;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.65) 0%, rgba(0,0,0,.85) 100%),
-        radial-gradient(circle at center, rgba(201,164,92,.15), transparent 60%),
-        url("https://s34.picofile.com/file/8491076100/81083389_1c20_49b0_bc14_96e5d2fb85a1.png")
-        center center / cover no-repeat;
-    }
+@media (max-width:560px){.desc{padding-inline-end:16px}.medal,.w-logo{width:108px;height:108px}.wrap{padding:0 10px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
-    .welcome-screen.hidden {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
 
-    .welcome-logo {
-      width: 140px;
-      height: 140px;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 4px solid var(--gold);
-      box-shadow: 0 10px 30px rgba(201, 164, 92, 0.35);
-      margin-bottom: 24px;
-      background: #fff;
-      animation: pulseGold 2s infinite alternate;
-    }
+/* ===== Autumn theme (refined) ===== */
+.welcome::after{background:radial-gradient(75% 60% at 50% 45%,rgba(30,12,4,.1),rgba(24,10,4,.9)),linear-gradient(180deg,rgba(176,76,20,.34),transparent 55%)}
+.bg{background:radial-gradient(90% 55% at 50% 0%,rgba(176,76,20,.45),transparent 70%),linear-gradient(180deg,rgba(30,12,4,.3) 0%,rgba(24,10,4,.5) 55%,rgba(20,8,3,.74) 100%),url("https://s34.picofile.com/file/8491076100/81083389_1c20_49b0_bc14_96e5d2fb85a1.png") center/cover no-repeat}
 
-    @keyframes pulseGold {
-      0% { box-shadow: 0 10px 25px rgba(201, 164, 92, 0.25); }
-      100% { box-shadow: 0 10px 40px rgba(201, 164, 92, 0.5); }
-    }
+/* titles: soft metallic gold instead of stacked extrusion */
+.w-title,.hero h1{background:linear-gradient(180deg,#fff2d2 0%,#ecc277 55%,#b98030 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;text-shadow:none;filter:drop-shadow(0 6px 12px rgba(0,0,0,.6))}
+.w-title{margin-top:44px}
 
-    .welcome-title {
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 12px;
-      text-shadow: 0 4px 15px rgba(0,0,0,0.85);
-    }
+.w-rule{width:170px;height:12px;background:none;margin:10px 0 14px;display:flex;align-items:center;gap:12px}
+.w-rule::before,.w-rule::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+.w-rule::after{transform:scaleX(-1)}
+.w-rule i{width:6px;height:6px;background:var(--gold);transform:rotate(45deg);flex:none}
+.w-tag{margin-bottom:6px}
+.enter{position:relative;width:min(270px,70vw);height:auto;aspect-ratio:200/156;padding:0;border-radius:0;background:none;box-shadow:none;margin:0;
+  font-weight:800;font-size:1.06rem;color:#fff6e2;transform:translateZ(45px);transition:transform .3s ease,filter .3s ease;
+  filter:drop-shadow(0 20px 16px rgba(0,0,0,.55))}
+.enter::before{content:"";position:absolute;inset:-14% -18%;background:radial-gradient(closest-side,rgba(244,150,50,.34),rgba(244,150,50,0));z-index:-1;animation:halo 4.5s ease-in-out infinite}
+.enter svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;animation:leafSway 6s ease-in-out infinite;transform-origin:50% 92%}
+.enter span{position:absolute;left:0;right:0;top:57%;transform:translateY(-50%);text-align:center;text-shadow:0 1px 2px rgba(0,0,0,.9),0 0 10px rgba(70,22,4,.8);pointer-events:none}
+.enter span::after{content:"";display:block;width:38px;height:1px;margin:6px auto 0;background:linear-gradient(90deg,transparent,#f8dfa6,transparent)}
+.enter:hover{transform:translateZ(45px) scale(1.05) rotate(-2deg);filter:drop-shadow(0 24px 20px rgba(0,0,0,.6)) brightness(1.1)}
+.enter:active{transform:translateZ(45px) scale(.97) translateY(3px);margin:0;box-shadow:none}
+@keyframes halo{50%{opacity:.55;transform:scale(1.08)}}
+@keyframes leafSway{50%{transform:rotate(2.2deg)}}
 
-    .welcome-tagline {
-      font-size: 1.15rem;
-      color: #f7eed7;
-      max-width: 500px;
-      margin-bottom: 32px;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.7);
-      line-height: 1.8;
-    }
+/* maple-leaf labels (tabs + section titles) */
+.lf{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:-1}
+.lf-base{fill:rgba(255,236,200,.04)}
+.lf-fill{fill:url(#gTabOn);opacity:0;transition:opacity .35s ease}
+.lf-gloss{fill:url(#gGloss);opacity:0;transition:opacity .35s ease}
+.lf-edge{fill:none;stroke:rgba(239,196,126,.45);stroke-width:1;stroke-linejoin:round;transition:stroke .3s}
+.lf-vein{fill:none;stroke:rgba(239,196,126,.4);stroke-width:.9;stroke-linecap:round;transition:stroke .3s}
+.tabs{background:linear-gradient(180deg,#27140b,#1a0e07);border-block-color:rgba(239,196,126,.24)}
+.tabs-in{gap:4px;padding:9px 14px}
+.tab{position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;height:42px;min-width:104px;padding:0 36px;border:0;
+  font-size:.84rem;font-weight:500;color:var(--sand);transition:color .3s,transform .3s}
+.tab:hover{transform:translateY(-1px)}
+.tab:hover .lf-edge{stroke:rgba(239,196,126,.8)}
+.tab.on{color:#fff3da;font-weight:800;border:0}
+.tab.on .lf-fill,.tab.on .lf-gloss{opacity:1}
+.tab.on .lf-edge{stroke:#f3d794;stroke-width:1.2}
+.tab.on .lf-vein{stroke:rgba(255,226,170,.5)}
+.tab.on .lf{filter:drop-shadow(0 5px 8px rgba(110,44,8,.55))}
 
-    .enter-menu-btn {
-      padding: 14px 42px;
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: #111;
-      background: linear-gradient(180deg, var(--gold-2), var(--gold));
-      border: none;
-      border-radius: 999px;
-      cursor: pointer;
-      box-shadow: 0 10px 25px rgba(201,164,92,0.35);
-      transition: all 0.3s ease;
-      letter-spacing: 0.5px;
-    }
+.sheet{border-color:rgba(239,196,126,.28);box-shadow:0 7px 0 rgba(120,58,16,.55),0 36px 60px -22px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,225,180,.12)}
+.stage{background:radial-gradient(60% 80% at 50% 75%,rgba(240,160,60,.24),transparent 72%),linear-gradient(135deg,rgba(150,62,16,.55),rgba(24,10,4,.55))}
+.page h2{display:flex;align-items:center;margin:14px 0 6px;font-size:1.15rem;font-weight:800;line-height:1.5;color:#fff3da;text-shadow:0 1px 2px rgba(0,0,0,.55)}
+.page h2::before,.page h2::after{content:"";flex:1;height:1px}
+.page h2::before{background:linear-gradient(270deg,transparent,rgba(239,196,126,.6))}
+.page h2::after{background:linear-gradient(90deg,transparent,rgba(239,196,126,.6))}
+.lf-host{position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;height:54px;min-width:190px;padding:0 70px;margin-inline:6px}
+.lf-host .lf-fill,.lf-host .lf-gloss{opacity:1}
+.lf-host .lf-edge{stroke:#f3d794;stroke-width:1.2}
+.lf-host .lf-vein{stroke:rgba(255,226,170,.5)}
+.lf-host .lf{filter:drop-shadow(0 10px 14px rgba(0,0,0,.5))}
+.page h2{margin:18px 0 6px}
+.price b{color:#f4b95e}
+.foot::before{content:"";display:block;width:70px;height:1px;margin:0 auto 14px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+@media (max-width:560px){.w-rule{width:140px}.tab{padding:0 30px}.lf-host{padding:0 56px;height:50px;min-width:170px}}
 
-    .enter-menu-btn:hover {
-      transform: translateY(-3px) scale(1.03);
-      box-shadow: 0 12px 30px rgba(201,164,92,0.5);
-    }
-
-    /* استایل‌های بخش منوی اصلی */
-    .menu-wrapper {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .menu-wrapper.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .hero-header{
-      position: relative;
-      min-height: 280px;
-      padding: 28px 16px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      background: transparent;
-      border-bottom: 1px solid rgba(201,164,92,.25);
-      overflow: hidden;
-    }
-
-    .hero-overlay{
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.45)),
-        radial-gradient(circle at top, rgba(201,164,92,.08), transparent 36%);
-    }
-
-    .hero-content{
-      position: relative;
-      z-index: 2;
-      max-width: 900px;
-      width: 100%;
-    }
-
-    .logo-wrap{
-      display:flex;
-      justify-content:center;
-      margin-bottom:10px;
-    }
-
-    .logo{
-      width:96px;
-      height:96px;
-      object-fit:cover;
-      border-radius:50%;
-      border:3px solid var(--gold);
-      background:#fff;
-      box-shadow:0 8px 20px rgba(0,0,0,.45);
-    }
-
-    .hero-header h1{
-      color:#fff;
-      font-size:1.85rem;
-      line-height:1.2;
-      margin-bottom:8px;
-      letter-spacing:.5px;
-      text-shadow:0 2px 12px rgba(0,0,0,.65);
-    }
-
-    .welcome-text{
-      color:#f6e8c8;
-      font-size:0.95rem;
-      max-width: 720px;
-      margin: 0 auto;
-      text-shadow:0 2px 10px rgba(0,0,0,.55);
-    }
-
-    .action-bar{
-      display:flex;
-      gap:10px;
-      justify-content:center;
-      align-items:center;
-      flex-wrap:wrap;
-      padding:12px 12px 0;
-      margin-top:8px;
-    }
-
-    .action-btn{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid rgba(201,164,92,.5);
-      background: linear-gradient(180deg, rgba(201,164,92,.14), rgba(201,164,92,.06));
-      color:var(--gold-2);
-      font-weight:700;
-      font-size:.92rem;
-      box-shadow:0 6px 18px rgba(0,0,0,.18);
-      transition:.25s ease;
-      white-space:nowrap;
-    }
-
-    .action-btn:hover{
-      transform:translateY(-2px);
-      background: linear-gradient(180deg, rgba(201,164,92,.2), rgba(201,164,92,.08));
-      box-shadow:0 10px 24px rgba(0,0,0,.28);
-    }
-
-    .action-icon{
-      width:18px;
-      height:18px;
-      display:block;
-      flex:0 0 auto;
-    }
-
-    .tabs-wrapper{
-      position: sticky;
-      top: 0;
-      z-index: 45;
-      background: rgba(11,11,11,0.75);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      overflow-x:auto;
-      white-space:nowrap;
-      padding:10px 8px;
-      scrollbar-width:none;
-    }
-
-    .tabs-wrapper::-webkit-scrollbar{
-      display:none;
-    }
-
-    .tabs{
-      display:flex;
-      gap:8px;
-      width:max-content;
-    }
-
-    .tab-btn{
-      border:1px solid rgba(201,164,92,.6);
-      background: rgba(0,0,0,.50);
-      color:var(--gold);
-      padding:10px 16px;
-      border-radius:999px;
-      cursor:pointer;
-      font-size:.95rem;
-      transition:.25s ease;
-      white-space:nowrap;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.02);
-    }
-
-    .tab-btn:hover{
-      transform:translateY(-1px);
-      border-color:rgba(226,192,122,.95);
-      background: rgba(20,20,20,.60);
-    }
-
-    .tab-btn.active{
-      background: linear-gradient(180deg, var(--gold-2), var(--gold));
-      color:#111;
-      font-weight:800;
-      box-shadow:0 10px 22px rgba(201,164,92,.28);
-      border-color: transparent;
-    }
-
-    .container{
-      max-width:980px;
-      margin:0 auto;
-      padding:18px 14px 42px;
-      position:relative;
-      z-index:1;
-    }
-
-    .tab-content{
-      display:none;
-      animation:fade .25s ease;
-    }
-
-    .tab-content.active{
-      display:block;
-    }
-
-    /* کارت‌های بخش منو کاملاً شفاف */
-    .section-card{
-      position:relative;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(0, 0, 0, 0.45) 100%);
-      border: 1px solid rgba(201, 164, 92, 0.3);
-      border-radius:22px;
-      padding:18px 16px;
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      margin-bottom: 20px;
-    }
-
-    .section-card::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-      background: radial-gradient(circle at top right, rgba(201,164,92,.08), transparent 28%);
-    }
-
-    .section-title{
-      position:relative;
-      color:var(--gold-2);
-      text-align:center;
-      margin-bottom:18px;
-      font-size:1.35rem;
-      border-bottom:1px solid rgba(201,164,92,.22);
-      padding-bottom:10px;
-      letter-spacing:.3px;
-    }
-
-    .section-hero-img{
-      width:100%;
-      height:180px;
-      object-fit:cover;
-      border-radius:16px;
-      margin-bottom:16px;
-      border:1px solid rgba(201,164,92,.22);
-      box-shadow:0 8px 18px rgba(0,0,0,.24);
-      filter: brightness(1.06) contrast(1.1);
-    }
-
-    .menu-list{
-      list-style:none;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
-
-    /* آیتم‌های منو کاملاً شفاف */
-    .menu-item{
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(0, 0, 0, 0.35) 100%);
-      border:1px solid rgba(255,255,255,.05);
-      border-radius:14px;
-      padding:13px 14px;
-      color:var(--text);
-      transition:.22s ease;
-      box-shadow:0 4px 14px rgba(0,0,0,.18);
-    }
-
-    .menu-item:hover{
-      transform:translateY(-2px);
-      border-color:rgba(201,164,92,.45);
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(0, 0, 0, 0.45) 100%);
-      box-shadow:0 10px 24px rgba(0,0,0,.28);
-    }
-
-    .menu-head{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-start;
-      gap:12px;
-    }
-
-    .item-name{
-      font-size:1rem;
-      font-weight:800;
-      color:var(--text);
-      display:block;
-      flex:1;
-    }
-
-    .item-price{
-      flex-shrink:0;
-      color:#111;
-      background: linear-gradient(180deg, var(--gold-2), var(--gold));
-      border-radius:999px;
-      padding:4px 10px;
-      font-size:.88rem;
-      font-weight:800;
-      min-width:74px;
-      text-align:center;
-      box-shadow:0 6px 14px rgba(201,164,92,.18);
-      direction: ltr; /* تضمین جهت صحیح نمایش قیمت و T */
-      display: inline-block;
-    }
-
-    .item-desc{
-      margin-top:6px;
-      color:var(--muted);
-      font-size:.9rem;
-      line-height:1.8;
-    }
-
-    footer{
-      text-align:center;
-      color:#cfcfcf;
-      font-size:.85rem;
-      padding:18px 10px 30px;
-      position:relative;
-      z-index:1;
-      text-shadow:0 2px 10px rgba(0,0,0,.35);
-    }
-
-    @keyframes fade{
-      from{ opacity:0; transform:translateY(6px); }
-      to{ opacity:1; transform:translateY(0); }
-    }
-
-    @media (max-width: 600px){
-      .logo{
-        width:88px;
-        height:88px;
-      }
-
-      .hero-header h1{
-        font-size:1.65rem;
-      }
-
-      .welcome-text{
-        font-size:.92rem;
-      }
-
-      .tab-btn{
-        font-size:.87rem;
-        padding:9px 14px;
-      }
-
-      .section-title{
-        font-size:1.18rem;
-      }
-
-      .item-name{
-        font-size:.94rem;
-      }
-
-      .item-desc{
-        font-size:.84rem;
-      }
-
-      .item-price{
-        min-width:68px;
-        padding:4px 9px;
-        font-size:.82rem;
-      }
-
-      .section-hero-img{
-        height:140px;
-      }
-
-      .welcome-title {
-        font-size: 2rem;
-      }
-      .welcome-tagline {
-        font-size: 1rem;
-      }
-    }
-  </style>
+#leafCanvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:101}
+body.entered #leafCanvas{z-index:4}
+@media (prefers-reduced-motion:reduce){#leafCanvas{display:none}}
+</style>
+<noscript><style>.welcome{display:none}#app{display:block}body.locked{overflow:auto;height:auto}</style></noscript>
 </head>
-<body>
+<body class="locked">
+<canvas id="leafCanvas" aria-hidden="true"></canvas>
 
-  <!-- لایه بک‌گراند ثابت -->
-  <div class="fixed-bg" aria-hidden="true"></div>
+<div class="bg" aria-hidden="true"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><linearGradient id="gPorc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffdf6"/><stop offset="1" stop-color="#e6d8bb"/></linearGradient><linearGradient id="gShade" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7a5a2a" stop-opacity="0"/><stop offset="0.6" stop-color="#7a5a2a" stop-opacity="0"/><stop offset="1" stop-color="#7a5a2a" stop-opacity="0.28"/></linearGradient><linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbe7ae"/><stop offset="0.55" stop-color="#c4923f"/><stop offset="1" stop-color="#8c6224"/></linearGradient><linearGradient id="gCoffee" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7a4521"/><stop offset="1" stop-color="#2c1609"/></linearGradient><linearGradient id="gLatte" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff1d6"/><stop offset="0.35" stop-color="#e8c99a"/><stop offset="0.7" stop-color="#7a4521"/><stop offset="1" stop-color="#3a1d0e"/></linearGradient><linearGradient id="gGlass" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffffff" stop-opacity="0.5"/><stop offset="0.5" stop-color="#ffffff" stop-opacity="0.06"/><stop offset="1" stop-color="#ffffff" stop-opacity="0.32"/></linearGradient><linearGradient id="gPink" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f8c0cb"/><stop offset="1" stop-color="#d9728a"/></linearGradient><linearGradient id="gBlue" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a9d3e0"/><stop offset="1" stop-color="#3f7f95"/></linearGradient><linearGradient id="gDough" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3cf86"/><stop offset="1" stop-color="#d79a3f"/></linearGradient><linearGradient id="gSauce" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e0553d"/><stop offset="1" stop-color="#a62a1c"/></linearGradient><linearGradient id="gGreen" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a8d467"/><stop offset="1" stop-color="#4f8a2c"/></linearGradient><linearGradient id="gRed" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9584a"/><stop offset="1" stop-color="#a82a20"/></linearGradient><linearGradient id="gChoc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a5230"/><stop offset="1" stop-color="#4a2512"/></linearGradient><path id="mapleBody" d="M100.0 120.2 L99.8 120.2 L99.6 120.3 L99.5 120.5 L99.3 120.6 L99.1 120.9 L98.9 121.1 L98.7 121.3 L98.5 121.6 L98.3 121.9 L98.1 122.1 L97.8 122.4 L97.6 122.7 L97.4 122.9 L97.2 123.2 L96.9 123.4 L96.7 123.6 L96.4 123.8 L96.2 124.0 L96.0 124.1 L95.7 124.2 L95.5 124.3 L95.3 124.4 L95.0 124.5 L94.8 124.6 L94.5 124.6 L94.3 124.7 L94.1 124.7 L93.8 124.7 L93.6 124.7 L93.4 124.7 L93.1 124.7 L92.9 124.7 L92.7 124.7 L92.4 124.7 L92.2 124.7 L92.0 124.7 L91.7 124.7 L91.5 124.7 L91.3 124.6 L91.0 124.6 L90.8 124.6 L90.6 124.6 L90.3 124.5 L90.1 124.5 L89.9 124.4 L89.6 124.4 L89.4 124.4 L89.2 124.3 L88.9 124.3 L88.7 124.2 L88.5 124.2 L88.2 124.1 L88.0 124.1 L87.8 124.0 L87.5 124.0 L87.3 123.9 L87.1 123.8 L86.8 123.8 L86.6 123.7 L86.4 123.6 L86.1 123.6 L85.9 123.5 L85.6 123.4 L85.4 123.3 L85.2 123.3 L84.9 123.2 L84.7 123.1 L84.5 123.0 L84.2 122.9 L84.0 122.8 L83.8 122.7 L83.5 122.6 L83.3 122.5 L83.1 122.4 L82.9 122.3 L82.6 122.2 L82.4 122.1 L82.2 122.0 L81.9 121.9 L81.7 121.8 L81.5 121.7 L81.2 121.6 L81.0 121.5 L80.8 121.3 L80.6 121.2 L80.3 121.1 L80.1 121.0 L79.9 120.8 L79.6 120.7 L79.4 120.6 L79.2 120.5 L78.9 120.3 L78.7 120.2 L78.5 120.1 L78.2 119.9 L78.0 119.8 L77.8 119.7 L77.5 119.5 L77.3 119.4 L77.0 119.3 L76.8 119.1 L76.5 119.0 L76.3 118.9 L76.0 118.7 L75.8 118.6 L75.5 118.5 L75.2 118.3 L75.0 118.2 L74.7 118.0 L74.5 117.9 L74.3 117.7 L74.1 117.5 L73.9 117.3 L73.7 117.1 L73.5 116.9 L73.3 116.7 L73.1 116.5 L72.9 116.3 L72.7 116.1 L72.5 115.9 L72.3 115.6 L72.2 115.4 L72.0 115.2 L71.8 115.0 L71.6 114.8 L71.5 114.5 L71.3 114.3 L71.0 114.2 L70.5 114.1 L70.1 113.9 L69.6 113.8 L69.1 113.7 L68.6 113.7 L68.0 113.6 L67.4 113.5 L66.7 113.5 L65.9 113.4 L65.1 113.4 L64.3 113.4 L63.4 113.3 L62.4 113.3 L61.3 113.3 L60.1 113.3 L58.9 113.4 L57.6 113.4 L56.2 113.4 L54.6 113.4 L53.0 113.5 L51.8 113.4 L50.7 113.2 L49.6 113.0 L48.4 112.9 L47.1 112.7 L45.8 112.5 L44.4 112.3 L42.9 112.1 L41.3 112.0 L39.5 111.8 L37.7 111.5 L35.7 111.3 L38.7 110.3 L41.4 109.3 L44.0 108.4 L46.4 107.5 L48.6 106.8 L50.6 106.1 L52.5 105.4 L54.2 104.8 L55.8 104.3 L56.9 103.8 L57.5 103.3 L58.0 102.9 L58.6 102.5 L59.1 102.1 L59.6 101.8 L60.0 101.4 L60.4 101.0 L60.8 100.7 L61.2 100.3 L61.6 100.0 L61.9 99.7 L62.3 99.3 L62.6 99.0 L62.9 98.7 L63.2 98.4 L63.5 98.1 L63.8 97.8 L64.1 97.5 L64.3 97.2 L64.6 96.9 L65.0 96.6 L65.5 96.4 L65.9 96.1 L66.4 95.9 L66.8 95.6 L67.1 95.4 L67.5 95.1 L67.8 94.9 L68.1 94.7 L68.4 94.4 L68.7 94.2 L69.0 94.0 L69.2 93.7 L69.4 93.5 L69.6 93.3 L69.6 93.0 L69.6 92.7 L69.7 92.4 L69.7 92.2 L69.7 91.9 L69.7 91.6 L69.7 91.3 L69.6 91.0 L69.4 90.7 L69.3 90.3 L69.1 90.0 L68.9 89.6 L68.8 89.2 L68.5 88.9 L68.3 88.5 L68.1 88.1 L67.8 87.6 L67.5 87.2 L67.2 86.7 L66.8 86.3 L66.5 85.8 L66.0 85.2 L65.6 84.7 L65.1 84.1 L64.5 83.5 L64.0 82.8 L63.3 82.1 L62.7 81.4 L62.3 80.8 L62.0 80.2 L61.6 79.6 L61.2 78.9 L60.8 78.3 L60.4 77.6 L59.9 76.9 L59.5 76.1 L59.0 75.4 L58.5 74.5 L57.9 73.7 L57.3 72.8 L56.7 71.9 L56.1 70.9 L55.4 69.9 L54.7 68.8 L53.9 67.7 L53.1 66.5 L52.2 65.3 L51.3 64.0 L50.4 62.6 L48.4 60.4 L46.2 57.9 L43.8 55.3 L41.2 52.4 L38.5 49.3 L35.6 46.0 L38.2 47.2 L40.6 48.4 L42.9 49.5 L45.1 50.6 L47.2 51.6 L49.1 52.5 L50.9 53.4 L52.7 54.3 L54.3 55.1 L55.9 55.9 L57.4 56.6 L58.8 57.3 L60.1 57.9 L61.4 58.6 L62.6 59.2 L64.1 60.1 L65.7 61.2 L67.1 62.2 L68.5 63.1 L69.8 64.0 L71.0 64.8 L72.1 65.5 L73.1 66.2 L74.1 66.9 L75.0 67.4 L75.9 68.0 L76.7 68.5 L77.4 68.9 L78.1 69.3 L78.8 69.7 L79.4 70.1 L80.0 70.4 L80.6 70.7 L81.1 70.9 L81.6 71.1 L82.1 71.4 L82.5 71.4 L82.8 71.4 L83.1 71.3 L83.4 71.3 L83.7 71.3 L84.0 71.2 L84.3 71.2 L84.6 71.1 L84.9 71.1 L85.2 71.0 L85.5 70.9 L85.8 70.8 L85.9 70.5 L86.1 70.1 L86.2 69.8 L86.4 69.4 L86.5 69.0 L86.6 68.5 L86.8 68.1 L86.9 67.6 L87.1 67.1 L87.2 66.7 L87.4 66.4 L87.6 66.0 L87.8 65.7 L88.1 65.3 L88.3 64.9 L88.5 64.6 L88.7 64.2 L88.9 63.7 L89.1 63.3 L89.4 62.9 L89.6 62.4 L89.8 61.9 L90.0 61.4 L90.3 60.9 L90.5 60.4 L90.7 59.8 L91.0 59.3 L91.2 58.7 L91.5 58.1 L91.7 57.4 L92.0 56.7 L92.1 55.3 L92.3 53.8 L92.4 52.2 L92.6 50.5 L92.8 48.6 L93.0 46.7 L93.2 44.5 L93.4 42.2 L93.7 39.8 L93.9 37.1 L94.3 34.3 L94.6 31.2 L95.0 28.0 L95.4 24.5 L95.8 20.8 L96.4 16.7 L96.9 12.5 L97.6 7.9 L98.3 3.0 L99.1 -2.2 L100.0 -7.8 L100.9 -2.2 L101.7 3.0 L102.4 7.9 L103.1 12.5 L103.6 16.7 L104.2 20.8 L104.6 24.5 L105.0 28.0 L105.4 31.2 L105.7 34.3 L106.1 37.1 L106.3 39.8 L106.6 42.2 L106.8 44.5 L107.0 46.7 L107.2 48.6 L107.4 50.5 L107.6 52.2 L107.7 53.8 L107.9 55.3 L108.0 56.7 L108.3 57.4 L108.5 58.1 L108.8 58.7 L109.0 59.3 L109.3 59.8 L109.5 60.4 L109.7 60.9 L110.0 61.4 L110.2 61.9 L110.4 62.4 L110.6 62.9 L110.9 63.3 L111.1 63.7 L111.3 64.2 L111.5 64.6 L111.7 64.9 L111.9 65.3 L112.2 65.7 L112.4 66.0 L112.6 66.4 L112.8 66.7 L112.9 67.1 L113.1 67.6 L113.2 68.1 L113.4 68.5 L113.5 69.0 L113.6 69.4 L113.8 69.8 L113.9 70.1 L114.1 70.5 L114.2 70.8 L114.5 70.9 L114.8 71.0 L115.1 71.1 L115.4 71.1 L115.7 71.2 L116.0 71.2 L116.3 71.3 L116.6 71.3 L116.9 71.3 L117.2 71.4 L117.5 71.4 L117.9 71.4 L118.4 71.1 L118.9 70.9 L119.4 70.7 L120.0 70.4 L120.6 70.1 L121.2 69.7 L121.9 69.3 L122.6 68.9 L123.3 68.5 L124.1 68.0 L125.0 67.4 L125.9 66.9 L126.9 66.2 L127.9 65.5 L129.0 64.8 L130.2 64.0 L131.5 63.1 L132.9 62.2 L134.3 61.2 L135.9 60.1 L137.4 59.2 L138.6 58.6 L139.9 57.9 L141.2 57.3 L142.6 56.6 L144.1 55.9 L145.7 55.1 L147.3 54.3 L149.1 53.4 L150.9 52.5 L152.8 51.6 L154.9 50.6 L157.1 49.5 L159.4 48.4 L161.8 47.2 L164.4 46.0 L161.5 49.3 L158.8 52.4 L156.2 55.3 L153.8 57.9 L151.6 60.4 L149.6 62.6 L148.7 64.0 L147.8 65.3 L146.9 66.5 L146.1 67.7 L145.3 68.8 L144.6 69.9 L143.9 70.9 L143.3 71.9 L142.7 72.8 L142.1 73.7 L141.5 74.5 L141.0 75.4 L140.5 76.1 L140.1 76.9 L139.6 77.6 L139.2 78.3 L138.8 78.9 L138.4 79.6 L138.0 80.2 L137.7 80.8 L137.3 81.4 L136.7 82.1 L136.0 82.8 L135.5 83.5 L134.9 84.1 L134.4 84.7 L134.0 85.2 L133.5 85.8 L133.2 86.3 L132.8 86.7 L132.5 87.2 L132.2 87.6 L131.9 88.1 L131.7 88.5 L131.5 88.9 L131.2 89.2 L131.1 89.6 L130.9 90.0 L130.7 90.3 L130.6 90.7 L130.4 91.0 L130.3 91.3 L130.3 91.6 L130.3 91.9 L130.3 92.2 L130.3 92.4 L130.4 92.7 L130.4 93.0 L130.4 93.3 L130.6 93.5 L130.8 93.7 L131.0 94.0 L131.3 94.2 L131.6 94.4 L131.9 94.7 L132.2 94.9 L132.5 95.1 L132.9 95.4 L133.2 95.6 L133.6 95.9 L134.1 96.1 L134.5 96.4 L135.0 96.6 L135.4 96.9 L135.7 97.2 L135.9 97.5 L136.2 97.8 L136.5 98.1 L136.8 98.4 L137.1 98.7 L137.4 99.0 L137.7 99.3 L138.1 99.7 L138.4 100.0 L138.8 100.3 L139.2 100.7 L139.6 101.0 L140.0 101.4 L140.4 101.8 L140.9 102.1 L141.4 102.5 L142.0 102.9 L142.5 103.3 L143.1 103.8 L144.2 104.3 L145.8 104.8 L147.5 105.4 L149.4 106.1 L151.4 106.8 L153.6 107.5 L156.0 108.4 L158.6 109.3 L161.3 110.3 L164.3 111.3 L162.3 111.5 L160.5 111.8 L158.7 112.0 L157.1 112.1 L155.6 112.3 L154.2 112.5 L152.9 112.7 L151.6 112.9 L150.4 113.0 L149.3 113.2 L148.2 113.4 L147.0 113.5 L145.4 113.4 L143.8 113.4 L142.4 113.4 L141.1 113.4 L139.9 113.3 L138.7 113.3 L137.6 113.3 L136.6 113.3 L135.7 113.4 L134.9 113.4 L134.1 113.4 L133.3 113.5 L132.6 113.5 L132.0 113.6 L131.4 113.7 L130.9 113.7 L130.4 113.8 L129.9 113.9 L129.5 114.1 L129.0 114.2 L128.7 114.3 L128.5 114.5 L128.4 114.8 L128.2 115.0 L128.0 115.2 L127.8 115.4 L127.7 115.6 L127.5 115.9 L127.3 116.1 L127.1 116.3 L126.9 116.5 L126.7 116.7 L126.5 116.9 L126.3 117.1 L126.1 117.3 L125.9 117.5 L125.7 117.7 L125.5 117.9 L125.3 118.0 L125.0 118.2 L124.8 118.3 L124.5 118.5 L124.2 118.6 L124.0 118.7 L123.7 118.9 L123.5 119.0 L123.2 119.1 L123.0 119.3 L122.7 119.4 L122.5 119.5 L122.2 119.7 L122.0 119.8 L121.8 119.9 L121.5 120.1 L121.3 120.2 L121.1 120.3 L120.8 120.5 L120.6 120.6 L120.4 120.7 L120.1 120.8 L119.9 121.0 L119.7 121.1 L119.4 121.2 L119.2 121.3 L119.0 121.5 L118.8 121.6 L118.5 121.7 L118.3 121.8 L118.1 121.9 L117.8 122.0 L117.6 122.1 L117.4 122.2 L117.1 122.3 L116.9 122.4 L116.7 122.5 L116.5 122.6 L116.2 122.7 L116.0 122.8 L115.8 122.9 L115.5 123.0 L115.3 123.1 L115.1 123.2 L114.8 123.3 L114.6 123.3 L114.4 123.4 L114.1 123.5 L113.9 123.6 L113.6 123.6 L113.4 123.7 L113.2 123.8 L112.9 123.8 L112.7 123.9 L112.5 124.0 L112.2 124.0 L112.0 124.1 L111.8 124.1 L111.5 124.2 L111.3 124.2 L111.1 124.3 L110.8 124.3 L110.6 124.4 L110.4 124.4 L110.1 124.4 L109.9 124.5 L109.7 124.5 L109.4 124.6 L109.2 124.6 L109.0 124.6 L108.7 124.6 L108.5 124.7 L108.3 124.7 L108.0 124.7 L107.8 124.7 L107.6 124.7 L107.3 124.7 L107.1 124.7 L106.9 124.7 L106.6 124.7 L106.4 124.7 L106.2 124.7 L105.9 124.7 L105.7 124.7 L105.5 124.6 L105.2 124.6 L105.0 124.5 L104.7 124.4 L104.5 124.3 L104.3 124.2 L104.0 124.1 L103.8 124.0 L103.6 123.8 L103.3 123.6 L103.1 123.4 L102.8 123.2 L102.6 122.9 L102.4 122.7 L102.2 122.4 L101.9 122.1 L101.7 121.9 L101.5 121.6 L101.3 121.3 L101.1 121.1 L100.9 120.9 L100.7 120.6 L100.5 120.5 L100.4 120.3 L100.2 120.2Z" vector-effect="non-scaling-stroke"/>
+<path id="mapleVeins" d="M100 114.2L100.0 10.0M100.0 91.2L110.2 79.1M100.0 91.2L89.8 79.1M100.0 76.7L109.4 65.5M100.0 76.7L90.6 65.5M100.0 62.1L108.6 51.9M100.0 62.1L91.4 51.9M100.0 47.5L107.8 38.2M100.0 47.5L92.2 38.2M100.0 32.9L107.0 24.6M100.0 32.9L93.0 24.6M100 114.2L38.7 48.6M86.5 99.7L85.8 86.1M86.5 99.7L73.0 98.1M77.9 90.6L77.3 78.0M77.9 90.6L65.5 89.0M69.4 81.4L68.7 69.9M69.4 81.4L58.0 80.0M60.8 72.2L60.2 61.8M60.8 72.2L50.5 70.9M52.2 63.0L51.7 53.7M52.2 63.0L42.9 61.9M100 114.2L161.3 48.6M113.5 99.7L127.0 98.1M113.5 99.7L114.2 86.1M122.1 90.6L134.5 89.0M122.1 90.6L122.7 78.0M130.6 81.4L142.0 80.0M130.6 81.4L131.3 69.9M139.2 72.2L149.5 70.9M139.2 72.2L139.8 61.8M147.8 63.0L157.1 61.9M147.8 63.0L148.3 53.7M100 114.2L42.9 110.1M87.4 113.3L81.2 107.2M87.4 113.3L80.4 118.4M79.4 112.7L73.7 107.1M79.4 112.7L73.0 117.4M71.4 112.1L66.2 107.0M71.4 112.1L65.5 116.4M63.4 111.5L58.7 106.9M63.4 111.5L58.1 115.4M55.4 111.0L51.2 106.8M55.4 111.0L50.6 114.5M100 114.2L157.1 110.1M112.6 113.3L119.6 118.4M112.6 113.3L118.8 107.2M120.6 112.7L127.0 117.4M120.6 112.7L126.3 107.1M128.6 112.1L134.5 116.4M128.6 112.1L133.8 107.0M136.6 111.5L141.9 115.4M136.6 111.5L141.3 106.9M144.6 111.0L149.4 114.5M144.6 111.0L148.8 106.8" vector-effect="non-scaling-stroke"/>
+<path id="labelBody" d="M0.0 40.0Q22.5 29.8 45.0 14.6Q71.2 23.7 97.5 24.6Q123.8 19.7 150.0 4.6Q176.2 19.7 202.5 24.6Q228.8 23.7 255.0 14.6Q277.5 29.8 300.0 40.0Q277.5 50.2 255.0 65.4Q228.8 56.3 202.5 55.4Q176.2 60.3 150.0 75.4Q123.8 60.3 97.5 55.4Q71.2 56.3 45.0 65.4Q22.5 50.2 0.0 40.0Z" vector-effect="non-scaling-stroke"/>
+<path id="labelVeins" d="M6.0 40.0L36.0 40.0M14.3 40.0l6 -5M14.3 40.0l6 5M22.7 40.0l6 -5M22.7 40.0l6 5M31.0 40.0l6 -5M31.0 40.0l6 5M264.0 40.0L294.0 40.0M272.3 40.0l-6 -5M272.3 40.0l-6 5M280.7 40.0l-6 -5M280.7 40.0l-6 5M289.0 40.0l-6 -5M289.0 40.0l-6 5" vector-effect="non-scaling-stroke"/>
+<clipPath id="mapleClip"><use href="#mapleBody"/></clipPath>
+<linearGradient id="gSweep" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".5"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<radialGradient id="gLeaf" cx=".5" cy=".5" r=".62"><stop offset="0" stop-color="#f6bc52"/><stop offset=".48" stop-color="#d86a1e"/><stop offset="1" stop-color="#8a2910"/></radialGradient>
+<linearGradient id="gLeafShine" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#1a0802" stop-opacity=".3"/></linearGradient>
+<linearGradient id="gEdge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbe6b0"/><stop offset=".5" stop-color="#d9a24e"/><stop offset="1" stop-color="#9a6a28"/></linearGradient>
+<linearGradient id="gTabOn" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d27322"/><stop offset=".55" stop-color="#963f12"/><stop offset="1" stop-color="#5e220a"/></linearGradient>
+<linearGradient id="gGloss" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".26"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<g id="mapleG"><path d="M100 112.2 Q101.5 134.2 96.5 152.2" stroke="#7a431a" stroke-width="4" fill="none" stroke-linecap="round"/><use href="#mapleBody" transform="translate(0 3)" fill="#1a0802" opacity=".5"/><use href="#mapleBody" fill="url(#gLeaf)"/><g clip-path="url(#mapleClip)"><use href="#mapleVeins" stroke="rgba(255,226,170,.5)" stroke-width=".8" fill="none" stroke-linecap="round"/></g><use href="#mapleBody" fill="url(#gLeafShine)"/><use href="#mapleBody" fill="none" stroke="url(#gEdge)" stroke-width="1.3" stroke-linejoin="round"/></g></defs></svg>
 
-  <!-- صفحه خوش‌آمدگویی ورودی (Welcome Intro) -->
-  <div class="welcome-screen" id="welcomeScreen">
-    <img
-      src="https://s34.picofile.com/file/8491073084/Screenshot_%DB%B2%DB%B0%DB%B2%DB%B6%DB%B0%DB%B7%DB%B2%DB%B0_%DB%B2%DB%B0%DB%B0%DB%B8%DB%B2%DB%B7_Instagram.jpg"
-      alt="لوگوی کافه پیانو"
-      class="welcome-logo"
-    >
-    <h2 class="welcome-title">کافه پیانو</h2>
-    <p class="welcome-tagline">
-      جایی که قهوه با هارمونی پیوند می‌خورد
-    </p>
-    <button class="enter-menu-btn" onclick="startExperience()">مشاهده منو</button>
+<div class="welcome" id="welcome">
+  <div class="tilt" id="tilt">
+    <div class="medal"><img class="w-logo" src="https://s34.picofile.com/file/8491073084/Screenshot_%DB%B2%DB%B0%DB%B2%DB%B6%DB%B0%DB%B7%DB%B2%DB%B0_%DB%B2%DB%B0%DB%B0%DB%B8%DB%B2%DB%B7_Instagram.jpg" alt="لوگوی کافه پیانو"></div>
+    <h2 class="w-title">کافه پیانو</h2>
+    <span class="w-rule" aria-hidden="true"><i></i></span>
+    <p class="w-tag">جایی که قهوه با هارمونی پیوند می‌خورد</p>
+    <button class="enter" id="enter" type="button"><svg viewBox="0 0 200 156" aria-hidden="true"><use href="#mapleG"/><g clip-path="url(#mapleClip)"><rect y="0" width="44" height="160" fill="url(#gSweep)" transform="skewX(-18)"><animate attributeName="x" from="-90" to="270" dur="5.5s" repeatCount="indefinite"/></rect></g></svg><span>مشاهده منو</span></button>
   </div>
+</div>
 
-  <!-- محتوای اصلی منو -->
-  <div class="menu-wrapper" id="menuWrapper">
-    <header class="hero-header">
-      <div class="hero-overlay"></div>
-
-      <div class="hero-content">
-        <div class="logo-wrap">
-          <img
-            src="https://s34.picofile.com/file/8491073084/Screenshot_%DB%B2%DB%B0%DB%B2%DB%B6%DB%B0%DB%B7%DB%B2%DB%B0_%DB%B2%DB%B0%DB%B0%DB%B8%DB%B2%DB%B7_Instagram.jpg"
-            alt="لوگوی کافه پیانو"
-            class="logo"
-          >
-        </div>
-
-        <h1>کافه پیانو</h1>
-        <div class="welcome-text">
-          جایی که قهوه با هارمونی پیوند می‌خورد
-        </div>
-
-        <div class="action-bar">
-          <a class="action-btn" href="tel:+989308105265">
-            📞 تماس
-          </a>
-
-          <a class="action-btn" href="https://www.instagram.com/piano__cafe__?igsh=OHVlM2s5ZWEzYmZ1" target="_blank" rel="noopener">
-            <svg class="action-icon" viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="currentColor" d="M7 2.5A4.5 4.5 0 0 0 2.5 7v10A4.5 4.5 0 0 0 7 21.5h10A4.5 4.5 0 0 0 21.5 17V7A4.5 4.5 0 0 0 17 2.5H7zm10 1.5A3 3 0 0 1 20 7v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h10z"/>
-              <path fill="currentColor" d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 1.5a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7z"/>
-              <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>
-            </svg>
-            اینستاگرام
-          </a>
-        </div>
-      </div>
-    </header>
-
-    <div class="tabs-wrapper">
-      <div class="tabs">
-        <button class="tab-btn active" onclick="openTab('hot', this)">نوشیدنی‌های گرم</button>
-        <button class="tab-btn" onclick="openTab('cold', this)">نوشیدنی‌های سرد</button>
-        <button class="tab-btn" onclick="openTab('hookah', this)">قلیان</button>
-        <button class="tab-btn" onclick="openTab('shake', this)">شیک</button>
-        <button class="tab-btn" onclick="openTab('pasta', this)">پاستا</button>
-        <button class="tab-btn" onclick="openTab('pizza', this)">پیتزا</button>
-        <button class="tab-btn" onclick="openTab('salad', this)">سالاد</button>
-        <button class="tab-btn" onclick="openTab('breakfast', this)">صبحانه</button>
-        <button class="tab-btn" onclick="openTab('starter', this)">پیش‌غذا</button>
-      </div>
+<div id="app" inert>
+  <header class="hero">
+    <div class="brand">
+      <img class="logo" src="https://s34.picofile.com/file/8491073084/Screenshot_%DB%B2%DB%B0%DB%B2%DB%B6%DB%B0%DB%B7%DB%B2%DB%B0_%DB%B2%DB%B0%DB%B0%DB%B8%DB%B2%DB%B7_Instagram.jpg" alt="لوگوی کافه پیانو">
+      <h1>کافه پیانو</h1>
     </div>
-
-    <div class="container">
-
-      <!-- بخش نوشیدنی‌های گرم -->
-      <section id="hot" class="tab-content active">
-        <div class="section-card">
-          <img class="section-hero-img" src="https://s34.picofile.com/file/8491085376/%DA%AF%D8%B1%D8%B1%D9%85.jpg" alt="نوشیدنی‌های گرم">
-          <h2 class="section-title">نوشیدنی‌های گرم</h2>
-          <ul class="menu-list">
-            <li class="menu-item"><div class="menu-head"><span class="item-name">اسپرسو سینگل</span><span class="item-price">60000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">اسپرسو دبل</span><span class="item-price">80000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">اسپرسو کن پانا</span><span class="item-price">100000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">اسپرسو ماکیاتو</span><span class="item-price">100000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">قهوه فرانسه</span><span class="item-price">110000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">کورتادو</span><span class="item-price">125000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">فلت وایت</span><span class="item-price">130000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">لانگ بلک</span><span class="item-price">100000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">موکا</span><span class="item-price">135000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">کارامل ماکیاتو</span><span class="item-price">135000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">شیر عسل دارچین</span><span class="item-price">140000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">شیر پسته</span><span class="item-price">140000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">گلد با شیر</span><span class="item-price">120000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">قهوه ترک استانبولی</span><span class="item-price">145000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">آفوگاتو (مخصوص پیانو)</span><span class="item-price">180000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">ماسالا</span><span class="item-price">110000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">هات چاکلت</span><span class="item-price">110000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">کینگ چاکلت</span><span class="item-price">130000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">چای ماچا</span><span class="item-price">80000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">چای سیاه</span><span class="item-price">55000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">چای کرک</span><span class="item-price">110000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">چای عربی مخصوص</span><span class="item-price">150000 T</span></div></li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- بخش نوشیدنی‌های سرد -->
-      <section id="cold" class="tab-content">
-        <div class="section-card">
-          <img class="section-hero-img" src="https://s34.picofile.com/file/8491085368/%D8%B3%D8%B1%D8%B1%D8%AF.jpg" alt="نوشیدنی‌های سرد">
-          <h2 class="section-title">نوشیدنی‌های سرد</h2>
-          <ul class="menu-list">
-            <li class="menu-item"><div class="menu-head"><span class="item-name">آیس آمریکانو</span><span class="item-price">100000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">آیس لته</span><span class="item-price">150000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">آیس کافی</span><span class="item-price">170000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">لیموناد</span><span class="item-price">135000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">موهیتو</span><span class="item-price">155000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">رد موهیتو</span><span class="item-price">170000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">آیس لته لوتوس</span><span class="item-price">185000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">آیس لته فندقی</span><span class="item-price">165000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">بلو کاراسائو</span><span class="item-price">170000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">آیس کارامل ماکیاتو</span><span class="item-price">170000 T</span></div></li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- بخش قلیان -->
-      <section id="hookah" class="tab-content">
-        <div class="section-card">
-          <img class="section-hero-img" src="https://s34.picofile.com/file/8491085442/%D9%82%D9%84%D9%82%D9%84.jpg" alt="قلیان">
-          <h2 class="section-title">قلیان</h2>
-          <ul class="menu-list">
-            <li class="menu-item"><div class="menu-head"><span class="item-name">بیسکوییت</span><span class="item-price">200000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">موهیتو</span><span class="item-price">200000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">لاو</span><span class="item-price">200000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">توت فرنگی بستنی</span><span class="item-price">200000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">دو سیب</span><span class="item-price">200000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">دو سیب آلبالو</span><span class="item-price"200000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">لیدی</span><span class="item-price">200000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">شب های مسکو</span><span class="item-price">200000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">پرتقال نعنا</span><span class="item-price">200000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">آدامس نعنا</span><span class="item-price">200000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">قلیان مخصوص کافه پیانو</span><span class="item-price">200000 T</span></div></li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- بخش شیک -->
-      <section id="shake" class="tab-content">
-        <div class="section-card">
-          <img class="section-hero-img" src="https://s34.picofile.com/file/8491085418/%D8%B4%DB%8C%DB%8C%DB%8C%DA%A9.jpg" alt="شیک">
-          <h2 class="section-title">شیک</h2>
-          <ul class="menu-list">
-            <li class="menu-item"><div class="menu-head"><span class="item-name">نوتلا</span><span class="item-price">220000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">شکلات فندقی</span><span class="item-price">190000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">موز شکلات</span><span class="item-price">220000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">کره بادام زمینی</span><span class="item-price">195000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">آناناس</span><span class="item-price">200000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">کیت کت</span><span class="item-price">210000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">توت فرنگی</span><span class="item-price">220000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">کرنبری</span><span class="item-price">210000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">انبه</span><span class="item-price">220000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">قهوه</span><span class="item-price">200000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">توت فرنگی شکلات</span><span class="item-price">215000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">بالشتکی</span><span class="item-price">200000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">موز انبه</span><span class="item-price">250000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">لوتوس</span><span class="item-price">210000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">اورئو</span><span class="item-price">200000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">نارگیل فندقی</span><span class="item-price">230000 T</span></div></li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- بخش پاستا -->
-      <section id="pasta" class="tab-content">
-        <div class="section-card">
-          <img class="section-hero-img" src="https://s34.picofile.com/file/8491085392/%D9%BE%D8%A7%D8%A7%D8%B3%D8%AA%D8%A7%D8%A7%D8%A7%D8%A7.jpg" alt="پاستا">
-          <h2 class="section-title">پاستا</h2>
-          <ul class="menu-list">
-            <li class="menu-item"><div class="menu-head"><span class="item-name">پاستا چیکن آلفردو</span><span class="item-price">390000 T</span></div></li>
-            <li class="menu-item"><div class="menu-head"><span class="item-name">پاستا چیکن مخصوص پیانو</span><span class="item-price">435000 T</span></div></li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- بخش پیتزا -->
-      <section id="pizza" class="tab-content">
-        <div class="section-card">
-          <img class="section-hero-img" src="https://s34.picofile.com/file/8491085476/%D9%BE%DB%8C%DB%8C%D8%AA%D8%B2%D8%A7%D8%A7%D8%A7%D8%A7.jpg" alt="پیتزا">
-          <h2 class="section-title">پیتزا</h2>
-          <ul class="menu-list">
-            <li class="menu-item">
-              <div class="menu-head"><span class="item-name">پیتزا پپرونی</span><span class="item-price">458000 T</span></div>
-              <div class="item-desc">سس پومودره - پپرونی 90% - پنیر میکس</div>
-            </li>
-            <li class="menu-item">
-              <div class="menu-head"><span class="item-name">پیتزا بونو</span><span class="item-price">405000 T</span></div>
-              <div class="item-desc">سس پومودره - ژامبون مرغ و گوشت 90% - پنیر میکس</div>
-            </li>
-            <li class="menu-item">
-              <div class="menu-head"><span class="item-name">پیتزا مخصوص (پیانو)</span><span class="item-price">738000 T</span></div>
-              <div class="item-desc">سس خامه - گوشت ریش شده - مرغ مرینت شده - پنیر میکس</div>
-            </li>
-            <li class="menu-item">
-              <div class="menu-head"><span class="item-name">پیتزا بیکن</span><span class="item-price">498000 T</span></div>
-              <div class="item-desc">سس پومودره - بیکن 90% - پنیر میکس</div>
-            </li>
-            <li class="menu-item">
-              <div class="menu-head"><span class="item-name">پیتزا بیکن چدار</span><span class="item-price">498000 T</span></div>
-              <div class="item-desc">سس چدار - بیکن 90% - پنیر میکس</div>
-            </li>
-            <li class="menu-item">
-              <div class="menu-head"><span class="item-name">پیتزا روستیکا</span><span class="item-price">658000 T</span></div>
-              <div class="item-desc">سس خامه - گوشت ریش شده - پنیر میکس</div>
-            </li>
-            <li class="menu-item">
-              <div class="menu-head"><span class="item-name">پیتزا ۴ سیزن</span><span class="item-price">578000 T</span></div>
-              <div class="item-desc">سس پومودره - ژامبون مرغ و گوشت 90% - گوشت ریش شده - مرغ مرینت شده - پپرونی 90% - پنیر میکس</div>
-            </li>
-            <li class="menu-item">
-              <div class="menu-head"><span class="item-name">پیتزا چیکن آلفردو</span><span class="item-price">508000 T</span></div>
-              <div class="item-desc">سس خامه - مرغ مرینت شده - پنیر میکس</div>
-            </li>
-            <li class="menu-item">
-              <div class="menu-head"><span class="item-name">پیتزا توسکانا</span><span class="item-price">518000 T</span></div>
-              <div class="item-desc">سس پومودره - مرغ مرینت شده - پنیر میکس</div>
-            </li>
-            <li class="menu-item">
-              <div class="menu-head"><span class="item-name">نان سیر</span><span class="item-price">398000 T</span></div>
-              <div class="item-desc">سس سیر - پنیر میکس</div>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- بخش سالاد -->
-      <section id="salad" class="tab-content">
-        <div class="section-card">
-          <img class="section-hero-img" src="https://s34.picofile.com/file/8491085384/%D8%B3%D8%A7%D9%84%D8%A7%D8%A7%D8%A7%D8%AF.jpg" alt="سالاد">
-          <h2 class="section-title">سالاد</h2>
-          <ul class="menu-list">
-            <li class="menu-item">
-              <div class="menu-head">
-                <span class="item-name">سالاد سزار</span>
-                <span class="item-price">430000 T</span>
-              </div>
-              <div class="item-desc">کاهو رسمی - مرغ مرینت شده - گوجه چری - نان کروتان - زیتون سبز</div>
-            </li>
-            <li class="menu-item">
-              <div class="menu-head">
-                <span class="item-name">سالاد سزار سوخاری</span>
-                <span class="item-price">470000 T</span>
-              </div>
-              <div class="item-desc">کاهو رسمی - فیله سوخاری پنیری - گوجه چری - نان کروتان - زیتون سبز</div>
-            </li>
-            <li class="menu-item">
-              <div class="menu-head">
-                <span class="item-name">سالاد سبز (گردو) (مخصوص پیانو)</span>
-                <span class="item-price">490000 T</span>
-              </div>
-              <div class="item-desc">کاهو پیچ - میوه فصل - گوجه چری - گردو رست شده - مرغ مرینت شده - کنجد - سس ریحان</div>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- بخش صبحانه -->
-      <section id="breakfast" class="tab-content">
-        <div class="section-card">
-          <img class="section-hero-img" src="https://s34.picofile.com/file/8491085350/%D8%B5%D8%A8%D9%88%D9%86%D9%87.jpg" alt="صبحانه">
-          <h2 class="section-title">صبحانه</h2>
-          <ul class="menu-list">
-            <li class="menu-item">
-              <div class="menu-head">
-                <span class="item-name">املت دونفره </span>
-                <span class="item-price">290000 T</span>
-              </div>
-              <div class="item-desc">پوره گوجه فرنگی - تخم مرغ</div>
-            </li>
-            <li class="menu-item">
-              <div class="menu-head">
-                <span class="item-name">نیمرو</span>
-                <span class="item-price">130000 T</span>
-              </div>
-            </li>
-            <li class="menu-item">
-              <div class="menu-head">
-                <span class="item-name">صبحانه انگلیسی</span>
-                <span class="item-price">388000 T</span>
-              </div>
-              <div class="item-desc">سوسیس شکاری - سیب زمینی سرخ شده - خوراک لوبیا - نیمرو دو عدد</div>
-            </li>
-            <li class="menu-item">
-              <div class="menu-head">
-                <span class="item-name">سوسیس تخم مرغ</span>
-                <span class="item-price">195000 T</span>
-              </div>
-              <div class="item-desc">سوسیس شکاری - تخم مرغ</div>
-            </li>
-            <li class="menu-item">
-              <div class="menu-head">
-                <span class="item-name">بشقاب سرد ایرانی</span>
-                <span class="item-price">230000 T</span>
-              </div>
-              <div class="item-desc">پنیر تبریزی - گوجه - خیار - تخم مرغ</div>
-            </li>
-            <li class="menu-item">
-              <div class="menu-head">
-                <span class="item-name">بیکن تخم مرغ</span>
-                <span class="item-price">220000 T</span>
-              </div>
-            </li>
-            <li class="menu-item">
-              <div class="menu-head">
-                <span class="item-name">املت دنور</span>
-                <span class="item-price">350000 T</span>
-              </div>
-              <div class="item-desc">پیاز - قارچ - گوجه - فلفل دلمه‌ای - ژامبون مرغ - پنیر پیتزا - تخم مرغ</div>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- بخش پیش‌غذا -->
-      <section id="starter" class="tab-content">
-        <div class="section-card">
-          <img class="section-hero-img" src="https://s34.picofile.com/file/8491085400/%D9%BE%DB%8C%D8%B4%D8%B4_%D8%BA%D8%B0%D8%A7%D8%A7.jpg" alt="پیش‌غذا">
-          <h2 class="section-title">پیش‌غذا</h2>
-          <ul class="menu-list">
-            <li class="menu-item">
-              <div class="menu-head">
-                <span class="item-name">فرنچ فرایز</span>
-                <span class="item-price">220000 T</span>
-              </div>
-            </li>
-            <li class="menu-item">
-              <div class="menu-head">
-                <span class="item-name">آلفرد فرایز</span>
-                <span class="item-price">380000 T</span>
-              </div>
-            </li>
-            <li class="menu-item">
-              <div class="menu-head">
-                <span class="item-name">بشقاب مخصوص (پیانو)</span>
-                <span class="item-price">470000 T</span>
-              </div>
-              <div class="item-desc">سیب زمینی - مرغ سوخاری - قارچ سوخاری - سوسیس انگشتی</div>
-            </li>
-            <li class="menu-item">
-              <div class="menu-head">
-                <span class="item-name">سیب زمینی تنوری</span>
-                <span class="item-price">405000 T</span>
-              </div>
-              <div class="item-desc">سیب زمینی - پنیر میکس - ژامبون مرغ و گوشت ۹۰٪</div>
-            </li>
-            <li class="menu-item">
-              <div class="menu-head">
-                <span class="item-name">فرنچ فرایز دیپ</span>
-                <span class="item-price">275000 T</span>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </section>
-
+    <p class="tag">جایی که قهوه با هارمونی پیوند می‌خورد</p>
+    <div class="actions">
+      <a class="act" href="tel:+989308105265"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>تماس</a>
+      <a class="act" href="https://www.instagram.com/piano__cafe__?igsh=OHVlM2s5ZWEzYmZ1" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2.5A4.5 4.5 0 0 0 2.5 7v10A4.5 4.5 0 0 0 7 21.5h10A4.5 4.5 0 0 0 21.5 17V7A4.5 4.5 0 0 0 17 2.5H7zm10 1.5A3 3 0 0 1 20 7v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h10z"/><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 1.5a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7z"/><circle cx="17.5" cy="6.5" r="1.2"/></svg>اینستاگرام</a>
     </div>
+  </header>
 
-    <footer>
-    </footer>
-  </div>
+  <nav class="tabs" id="tabs" aria-label="دسته‌بندی منو"><div class="tabs-in" role="tablist"><button class="tab on" role="tab" id="tab-hot" aria-controls="page-hot" aria-selected="true" tabindex="0" type="button">نوشیدنی‌های گرم</button><button class="tab" role="tab" id="tab-cold" aria-controls="page-cold" aria-selected="false" tabindex="-1" type="button">نوشیدنی‌های سرد</button><button class="tab" role="tab" id="tab-hookah" aria-controls="page-hookah" aria-selected="false" tabindex="-1" type="button">قلیان</button><button class="tab" role="tab" id="tab-shake" aria-controls="page-shake" aria-selected="false" tabindex="-1" type="button">شیک</button><button class="tab" role="tab" id="tab-pasta" aria-controls="page-pasta" aria-selected="false" tabindex="-1" type="button">پاستا</button><button class="tab" role="tab" id="tab-pizza" aria-controls="page-pizza" aria-selected="false" tabindex="-1" type="button">پیتزا</button><button class="tab" role="tab" id="tab-salad" aria-controls="page-salad" aria-selected="false" tabindex="-1" type="button">سالاد</button><button class="tab" role="tab" id="tab-breakfast" aria-controls="page-breakfast" aria-selected="false" tabindex="-1" type="button">صبحانه</button><button class="tab" role="tab" id="tab-starter" aria-controls="page-starter" aria-selected="false" tabindex="-1" type="button">پیش‌غذا</button></div></nav>
 
-  <script>
-    // کنترل ورود کاربر و انتقال از صفحه خوش‌آمدگویی به منو
-    function startExperience() {
-      const welcome = document.getElementById('welcomeScreen');
-      const menu = document.getElementById('menuWrapper');
-      
-      welcome.classList.add('hidden');
-      menu.classList.add('visible');
-      
-      // اسکرول نرم به ابتدای هدر منو بعد از باز شدن
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }, 500);
+  <div class="wrap"><main class="sheet" id="content">
+<section class="page" id="page-hot" role="tabpanel" aria-labelledby="tab-hot"><div class="stage" role="img" aria-label="نوشیدنی‌های گرم"><div class="art"><img src="https://s34.picofile.com/file/8491085376/%DA%AF%D8%B1%D8%B1%D9%85.jpg" alt="نوشیدنی‌های گرم" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;display:block"></div></div><h2>نوشیدنی‌های گرم</h2><ul class="items"><li class="item"><div class="row"><span class="name">اسپرسو سینگل</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="70000"><b>۷۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">اسپرسو دبل</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="90000"><b>۹۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">اسپرسو کن پانا</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="120000"><b>۱۲۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">اسپرسو ماکیاتو</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="120000"><b>۱۲۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">قهوه فرانسه</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="130000"><b>۱۳۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">کورتادو</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="145000"><b>۱۴۵٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">فلت وایت</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="145000"><b>۱۴۵٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">لانگ بلک</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="120000"><b>۱۲۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">موکا</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="150000"><b>۱۵۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">کارامل ماکیاتو</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="155000"><b>۱۵۵٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">شیر عسل دارچین</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="160000"><b>۱۶۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">شیر پسته</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="155000"><b>۱۵۵٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">گلد با شیر</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="130000"><b>۱۳۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">قهوه ترک استانبولی</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="130000"><b>۱۳۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item sig"><div class="row"><span class="name">آفوگاتو (مخصوص پیانو)</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="205000"><b>۲۰۵٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">ماسالا</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="135000"><b>۱۳۵٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">هات چاکلت</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="135000"><b>۱۳۵٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">کینگ چاکلت</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="155000"><b>۱۵۵٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">چای ماچا</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="100000"><b>۱۰۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">چای سیاه</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="60000"><b>۶۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">چای کرک</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="130000"><b>۱۳۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">چای عربی مخصوص</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="190000"><b>۱۹۰٬۰۰۰</b><small>تومان</small></span></div></li></ul></section>
+<section class="page" id="page-cold" role="tabpanel" aria-labelledby="tab-cold" hidden><div class="stage" role="img" aria-label="نوشیدنی‌های سرد"><div class="art"><img src="https://s34.picofile.com/file/8491085368/%D8%B3%D8%B1%D8%B1%D8%AF.jpg" alt="نوشیدنی‌های سرد" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;display:block"></div></div><h2>نوشیدنی‌های سرد</h2><ul class="items"><li class="item"><div class="row"><span class="name">آیس آمریکانو</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="100000"><b>۱۰۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">آیس لته</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="150000"><b>۱۵۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">آیس کافی</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="170000"><b>۱۷۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">لیموناد</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="135000"><b>۱۳۵٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">موهیتو</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="155000"><b>۱۵۵٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">رد موهیتو</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="170000"><b>۱۷۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">آیس لته لوتوس</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="185000"><b>۱۸۵٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">آیس لته فندقی</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="165000"><b>۱۶۵٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">بلو کاراسائو</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="170000"><b>۱۷۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">آیس کارامل ماکیاتو</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="170000"><b>۱۷۰٬۰۰۰</b><small>تومان</small></span></div></li></ul></section>
+<section class="page" id="page-hookah" role="tabpanel" aria-labelledby="tab-hookah" hidden><div class="stage" role="img" aria-label="قلیان"><div class="art"><img src="https://s34.picofile.com/file/8491085442/%D9%82%D9%84%D9%82%D9%84.jpg" alt="قلیان" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;display:block"></div></div><h2>قلیان</h2><ul class="items"><li class="item"><div class="row"><span class="name">بیسکوییت</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="200000"><b>۲۰۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">موهیتو</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="200000"><b>۲۰۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">لاو</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="200000"><b>۲۰۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">توت فرنگی بستنی</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="200000"><b>۲۰۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">دو سیب</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="200000"><b>۲۰۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">دو سیب آلبالو</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="200000"><b>۲۰۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">لیدی</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="200000"><b>۲۰۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">شب های مسکو</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="200000"><b>۲۰۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">پرتقال نعنا</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="200000"><b>۲۰۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">آدامس نعنا</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="200000"><b>۲۰۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item sig"><div class="row"><span class="name">قلیان مخصوص کافه پیانو</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="200000"><b>۲۰۰٬۰۰۰</b><small>تومان</small></span></div></li></ul></section>
+<section class="page" id="page-shake" role="tabpanel" aria-labelledby="tab-shake" hidden><div class="stage" role="img" aria-label="شیک"><div class="art"><img src="https://s34.picofile.com/file/8491085418/%D8%B4%DB%8C%DB%8C%DB%8C%DA%A9.jpg" alt="شیک" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;display:block"></div></div><h2>شیک</h2><ul class="items"><li class="item"><div class="row"><span class="name">نوتلا</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="220000"><b>۲۲۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">شکلات فندقی</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="190000"><b>۱۹۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">موز شکلات</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="220000"><b>۲۲۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">کره بادام زمینی</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="195000"><b>۱۹۵٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">آناناس</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="200000"><b>۲۰۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">کیت کت</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="210000"><b>۲۱۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">توت فرنگی</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="220000"><b>۲۲۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">کرنبری</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="210000"><b>۲۱۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">انبه</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="220000"><b>۲۲۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">قهوه</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="200000"><b>۲۰۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">توت فرنگی شکلات</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="215000"><b>۲۱۵٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">بالشتکی</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="200000"><b>۲۰۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">موز انبه</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="250000"><b>۲۵۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">لوتوس</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="210000"><b>۲۱۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">اورئو</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="200000"><b>۲۰۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">نارگیل فندقی</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="230000"><b>۲۳۰٬۰۰۰</b><small>تومان</small></span></div></li></ul></section>
+<section class="page" id="page-pasta" role="tabpanel" aria-labelledby="tab-pasta" hidden><div class="stage" role="img" aria-label="پاستا"><div class="art"><img src="https://s34.picofile.com/file/8491085392/%D9%BE%D8%A7%D8%A7%D8%B3%D8%AA%D8%A7%D8%A7%D8%A7%D8%A7.jpg" alt="پاستا" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;display:block"></div></div><h2>پاستا</h2><ul class="items"><li class="item"><div class="row"><span class="name">پاستا چیکن آلفردو</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="390000"><b>۳۹۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item sig"><div class="row"><span class="name">پاستا چیکن مخصوص پیانو</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="435000"><b>۴۳۵٬۰۰۰</b><small>تومان</small></span></div></li></ul></section>
+<section class="page" id="page-pizza" role="tabpanel" aria-labelledby="tab-pizza" hidden><div class="stage" role="img" aria-label="پیتزا"><div class="art"><img src="https://s34.picofile.com/file/8491085476/%D9%BE%DB%8C%DB%8C%D8%AA%D8%B2%D8%A7%D8%A7%D8%A7%D8%A7.jpg" alt="پیتزا" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;display:block"></div></div><h2>پیتزا</h2><ul class="items"><li class="item"><div class="row"><span class="name">پیتزا پپرونی</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="510000"><b>۵۱۰٬۰۰۰</b><small>تومان</small></span></div><p class="desc">سس پومودره - پپرونی 90% - پنیر میکس</p></li><li class="item"><div class="row"><span class="name">پیتزا بونو</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="425000"><b>۴۲۵٬۰۰۰</b><small>تومان</small></span></div><p class="desc">سس پومودره - ژامبون مرغ و گوشت 90% - پنیر میکس</p></li><li class="item sig"><div class="row"><span class="name">پیتزا مخصوص (پیانو)</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="758000"><b>۷۵۸٬۰۰۰</b><small>تومان</small></span></div><p class="desc">سس خامه - گوشت ریش شده - مرغ مرینت شده - پنیر میکس</p></li><li class="item"><div class="row"><span class="name">پیتزا بیکن</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="510000"><b>۵۱۰٬۰۰۰</b><small>تومان</small></span></div><p class="desc">سس پومودره - بیکن 90% - پنیر میکس</p></li><li class="item"><div class="row"><span class="name">پیتزا بیکن چدار</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="525000"><b>۵۲۵٬۰۰۰</b><small>تومان</small></span></div><p class="desc">سس چدار - بیکن 90% - پنیر میکس</p></li><li class="item"><div class="row"><span class="name">پیتزا روستیکا</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="678000"><b>۶۷۸٬۰۰۰</b><small>تومان</small></span></div><p class="desc">سس خامه - گوشت ریش شده - پنیر میکس</p></li><li class="item"><div class="row"><span class="name">پیتزا ۴ سیزن</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="592000"><b>۵۹۲٬۰۰۰</b><small>تومان</small></span></div><p class="desc">سس پومودره - ژامبون مرغ و گوشت 90% - گوشت ریش شده - مرغ مرینت شده - پپرونی 90% - پنیر میکس</p></li><li class="item"><div class="row"><span class="name">پیتزا چیکن آلفردو</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="523000"><b>۵۲۳٬۰۰۰</b><small>تومان</small></span></div><p class="desc">سس خامه - مرغ مرینت شده - پنیر میکس</p></li><li class="item"><div class="row"><span class="name">پیتزا توسکانا</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="532000"><b>۵۳۲٬۰۰۰</b><small>تومان</small></span></div><p class="desc">سس پومودره - مرغ مرینت شده - پنیر میکس</p></li><li class="item"><div class="row"><span class="name">نان سیر</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="398000"><b>۳۹۸٬۰۰۰</b><small>تومان</small></span></div><p class="desc">سس سیر - پنیر میکس</p></li></ul></section>
+<section class="page" id="page-salad" role="tabpanel" aria-labelledby="tab-salad" hidden><div class="stage" role="img" aria-label="سالاد"><div class="art"><img src="https://s34.picofile.com/file/8491085384/%D8%B3%D8%A7%D9%84%D8%A7%D8%A7%D8%A7%D8%AF.jpg" alt="سالاد" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;display:block"></div></div><h2>سالاد</h2><ul class="items"><li class="item"><div class="row"><span class="name">سالاد سزار</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="430000"><b>۴۳۰٬۰۰۰</b><small>تومان</small></span></div><p class="desc">کاهو رسمی - مرغ مرینت شده - گوجه چری - نان کروتان - زیتون سبز</p></li><li class="item"><div class="row"><span class="name">سالاد سزار سوخاری</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="470000"><b>۴۷۰٬۰۰۰</b><small>تومان</small></span></div><p class="desc">کاهو رسمی - فیله سوخاری پنیری - گوجه چری - نان کروتان - زیتون سبز</p></li><li class="item sig"><div class="row"><span class="name">سالاد سبز (گردو) (مخصوص پیانو)</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="490000"><b>۴۹۰٬۰۰۰</b><small>تومان</small></span></div><p class="desc">کاهو پیچ - میوه فصل - گوجه چری - گردو رست شده - مرغ مرینت شده - کنجد - سس ریحان</p></li></ul></section>
+<section class="page" id="page-breakfast" role="tabpanel" aria-labelledby="tab-breakfast" hidden><div class="stage" role="img" aria-label="صبحانه"><div class="art"><img src="https://s34.picofile.com/file/8491085350/%D8%B5%D8%A8%D9%88%D9%86%D9%87.jpg" alt="صبحانه" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;display:block"></div></div><h2>صبحانه</h2><ul class="items"><li class="item"><div class="row"><span class="name">املت دونفره</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="290000"><b>۲۹۰٬۰۰۰</b><small>تومان</small></span></div><p class="desc">پوره گوجه فرنگی - تخم مرغ</p></li><li class="item"><div class="row"><span class="name">نیمرو</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="130000"><b>۱۳۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">صبحانه انگلیسی</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="388000"><b>۳۸۸٬۰۰۰</b><small>تومان</small></span></div><p class="desc">سوسیس شکاری - سیب زمینی سرخ شده - خوراک لوبیا - نیمرو دو عدد</p></li><li class="item"><div class="row"><span class="name">سوسیس تخم مرغ</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="195000"><b>۱۹۵٬۰۰۰</b><small>تومان</small></span></div><p class="desc">سوسیس شکاری - تخم مرغ</p></li><li class="item"><div class="row"><span class="name">بشقاب سرد ایرانی</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="230000"><b>۲۳۰٬۰۰۰</b><small>تومان</small></span></div><p class="desc">پنیر تبریزی - گوجه - خیار - تخم مرغ</p></li><li class="item"><div class="row"><span class="name">بیکن تخم مرغ</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="220000"><b>۲۲۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">املت دنور</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="350000"><b>۳۵۰٬۰۰۰</b><small>تومان</small></span></div><p class="desc">پیاز - قارچ - گوجه - فلفل دلمه‌ای - ژامبون مرغ - پنیر پیتزا - تخم مرغ</p></li></ul></section>
+<section class="page" id="page-starter" role="tabpanel" aria-labelledby="tab-starter" hidden><div class="stage" role="img" aria-label="پیش‌غذا"><div class="art"><img src="https://s34.picofile.com/file/8491085400/%D9%BE%DB%8C%D8%B4%D8%B4_%D8%BA%D8%B0%D8%A7%D8%A7.jpg" alt="پیش‌غذا" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;display:block"></div></div><h2>پیش‌غذا</h2><ul class="items"><li class="item"><div class="row"><span class="name">فرنچ فرایز</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="220000"><b>۲۲۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item"><div class="row"><span class="name">آلفرد فرایز</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="380000"><b>۳۸۰٬۰۰۰</b><small>تومان</small></span></div></li><li class="item sig"><div class="row"><span class="name">بشقاب مخصوص (پیانو)</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="470000"><b>۴۷۰٬۰۰۰</b><small>تومان</small></span></div><p class="desc">سیب زمینی - مرغ سوخاری - قارچ سوخاری - سوسیس انگشتی</p></li><li class="item"><div class="row"><span class="name">سیب زمینی تنوری</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="405000"><b>۴۰۵٬۰۰۰</b><small>تومان</small></span></div><p class="desc">سیب زمینی - پنیر میکس - ژامبون مرغ و گوشت ۹۰٪</p></li><li class="item"><div class="row"><span class="name">فرنچ فرایز دیپ</span><span class="dots" aria-hidden="true"></span><span class="price" data-price="275000"><b>۲۷۵٬۰۰۰</b><small>تومان</small></span></div></li></ul></section>
+  </main></div>
+
+  <footer class="foot">جایی که قهوه با هارمونی پیوند می‌خورد</footer>
+</div>
+
+<script>
+(() => {
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const body = document.body, app = $('#app'), welcome = $('#welcome');
+
+$('#enter').addEventListener('click', () => {
+  body.classList.add('entered');
+  app.inert = false;
+  body.classList.remove('locked');
+  setTimeout(() => { welcome.hidden = true; }, 520);
+});
+
+const tabs = $$('.tab'), pages = $$('.page'), bar = $('#tabs'), content = $('#content');
+function go(i) {
+  tabs.forEach((t, j) => {
+    const on = j === i;
+    t.classList.toggle('on', on);
+    t.setAttribute('aria-selected', String(on));
+    t.tabIndex = on ? 0 : -1;
+  });
+  pages.forEach((p, j) => { p.hidden = j !== i; });
+  tabs[i].scrollIntoView({ inline: 'center', block: 'nearest' });
+  const top = content.getBoundingClientRect().top + window.scrollY - bar.offsetHeight - 8;
+  if (window.scrollY > top + 4) window.scrollTo(0, top);
+}
+tabs.forEach((t, i) => {
+  t.addEventListener('click', () => go(i));
+  t.addEventListener('keydown', (e) => {
+    let n = null;
+    if (e.key === 'ArrowLeft') n = i + 1;
+    else if (e.key === 'ArrowRight') n = i - 1;
+    if (n !== null && n >= 0 && n < tabs.length) { e.preventDefault(); go(n); tabs[n].focus({ preventScroll: true }); }
+  });
+});
+const tilt = $('#tilt');
+if (tilt && window.matchMedia('(hover: hover)').matches) {
+  let raf = 0;
+  welcome.addEventListener('pointermove', (e) => {
+    if (raf) return;
+    raf = requestAnimationFrame(() => {
+      raf = 0;
+      const x = e.clientX / window.innerWidth - 0.5, y = e.clientY / window.innerHeight - 0.5;
+      tilt.style.transform = 'rotateX(' + (-y * 10).toFixed(2) + 'deg) rotateY(' + (x * 14).toFixed(2) + 'deg)';
+    });
+  }, { passive: true });
+}
+})();
+</script>
+
+
+
+<script>
+/* maple-leaf labels */
+(function(){
+  var SVG='<svg class="lf" viewBox="0 0 300 80" preserveAspectRatio="none" aria-hidden="true"><use class="lf-base" href="#labelBody"/><use class="lf-fill" href="#labelBody"/><use class="lf-gloss" href="#labelBody"/><use class="lf-vein" href="#labelVeins"/><use class="lf-edge" href="#labelBody"/></svg>';
+  function init(host){host.insertAdjacentHTML('afterbegin',SVG);}
+  Array.prototype.forEach.call(document.querySelectorAll('.tab'),init);
+  Array.prototype.forEach.call(document.querySelectorAll('.page h2'),function(h2){
+    var host=document.createElement('span');host.className='lf-host';
+    while(h2.firstChild)host.appendChild(h2.firstChild);h2.appendChild(host);init(host);
+  });
+})();
+</script>
+<script>
+/* falling maple leaves */
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){var sv=document.querySelector('.enter svg');if(sv&&sv.pauseAnimations)sv.pauseAnimations();return;}
+  var cv=document.getElementById('leafCanvas'),ctx=cv.getContext('2d');
+  var PATH=new Path2D("M100.0 120.2 L99.5 120.5 L98.9 121.1 L98.3 121.9 L97.6 122.7 L96.9 123.4 L96.2 124.0 L95.5 124.3 L94.8 124.6 L94.1 124.7 L93.4 124.7 L92.7 124.7 L92.0 124.7 L91.3 124.6 L90.6 124.6 L89.9 124.4 L89.2 124.3 L88.5 124.2 L87.8 124.0 L87.1 123.8 L86.4 123.6 L85.6 123.4 L84.9 123.2 L84.2 122.9 L83.5 122.6 L82.9 122.3 L82.2 122.0 L81.5 121.7 L80.8 121.3 L80.1 121.0 L79.4 120.6 L78.7 120.2 L78.0 119.8 L77.3 119.4 L76.5 119.0 L75.8 118.6 L75.0 118.2 L74.3 117.7 L73.7 117.1 L73.1 116.5 L72.5 115.9 L72.0 115.2 L71.5 114.5 L70.5 114.1 L69.1 113.7 L67.4 113.5 L65.1 113.4 L62.4 113.3 L58.9 113.4 L54.6 113.4 L50.7 113.2 L47.1 112.7 L42.9 112.1 L37.7 111.5 L41.4 109.3 L48.6 106.8 L54.2 104.8 L57.5 103.3 L59.1 102.1 L60.4 101.0 L61.6 100.0 L62.6 99.0 L63.5 98.1 L64.3 97.2 L65.5 96.4 L66.8 95.6 L67.8 94.9 L68.7 94.2 L69.4 93.5 L69.6 92.7 L69.7 91.9 L69.6 91.0 L69.1 90.0 L68.5 88.9 L67.8 87.6 L66.8 86.3 L65.6 84.7 L64.0 82.8 L62.3 80.8 L61.2 78.9 L59.9 76.9 L58.5 74.5 L56.7 71.9 L54.7 68.8 L52.2 65.3 L48.4 60.4 L41.2 52.4 L38.2 47.2 L45.1 50.6 L50.9 53.4 L55.9 55.9 L60.1 57.9 L64.1 60.1 L68.5 63.1 L72.1 65.5 L75.0 67.4 L77.4 68.9 L79.4 70.1 L81.1 70.9 L82.5 71.4 L83.4 71.3 L84.3 71.2 L85.2 71.0 L85.9 70.5 L86.4 69.4 L86.8 68.1 L87.2 66.7 L87.8 65.7 L88.5 64.6 L89.1 63.3 L89.8 61.9 L90.5 60.4 L91.2 58.7 L92.0 56.7 L92.4 52.2 L93.0 46.7 L93.7 39.8 L94.6 31.2 L95.8 20.8 L97.6 7.9 L100.0 -7.8 L102.4 7.9 L104.2 20.8 L105.4 31.2 L106.3 39.8 L107.0 46.7 L107.6 52.2 L108.0 56.7 L108.8 58.7 L109.5 60.4 L110.2 61.9 L110.9 63.3 L111.5 64.6 L112.2 65.7 L112.8 66.7 L113.2 68.1 L113.6 69.4 L114.1 70.5 L114.8 71.0 L115.7 71.2 L116.6 71.3 L117.5 71.4 L118.9 70.9 L120.6 70.1 L122.6 68.9 L125.0 67.4 L127.9 65.5 L131.5 63.1 L135.9 60.1 L139.9 57.9 L144.1 55.9 L149.1 53.4 L154.9 50.6 L161.8 47.2 L158.8 52.4 L151.6 60.4 L147.8 65.3 L145.3 68.8 L143.3 71.9 L141.5 74.5 L140.1 76.9 L138.8 78.9 L137.7 80.8 L136.0 82.8 L134.4 84.7 L133.2 86.3 L132.2 87.6 L131.5 88.9 L130.9 90.0 L130.4 91.0 L130.3 91.9 L130.4 92.7 L130.6 93.5 L131.3 94.2 L132.2 94.9 L133.2 95.6 L134.5 96.4 L135.7 97.2 L136.5 98.1 L137.4 99.0 L138.4 100.0 L139.6 101.0 L140.9 102.1 L142.5 103.3 L145.8 104.8 L151.4 106.8 L158.6 109.3 L162.3 111.5 L157.1 112.1 L152.9 112.7 L149.3 113.2 L145.4 113.4 L141.1 113.4 L137.6 113.3 L134.9 113.4 L132.6 113.5 L130.9 113.7 L129.5 114.1 L128.5 114.5 L128.0 115.2 L127.5 115.9 L126.9 116.5 L126.3 117.1 L125.7 117.7 L125.0 118.2 L124.2 118.6 L123.5 119.0 L122.7 119.4 L122.0 119.8 L121.3 120.2 L120.6 120.6 L119.9 121.0 L119.2 121.3 L118.5 121.7 L117.8 122.0 L117.1 122.3 L116.5 122.6 L115.8 122.9 L115.1 123.2 L114.4 123.4 L113.6 123.6 L112.9 123.8 L112.2 124.0 L111.5 124.2 L110.8 124.3 L110.1 124.4 L109.4 124.6 L108.7 124.6 L108.0 124.7 L107.3 124.7 L106.6 124.7 L105.9 124.7 L105.2 124.6 L104.5 124.3 L103.8 124.0 L103.1 123.4 L102.4 122.7 L101.7 121.9 L101.1 121.1 L100.5 120.5Z"),VEINS=new Path2D("M100 114.2L100.0 10.0M100.0 91.2L110.2 79.1M100.0 91.2L89.8 79.1M100.0 76.7L109.4 65.5M100.0 76.7L90.6 65.5M100.0 62.1L108.6 51.9M100.0 62.1L91.4 51.9M100.0 47.5L107.8 38.2M100.0 47.5L92.2 38.2M100.0 32.9L107.0 24.6M100.0 32.9L93.0 24.6M100 114.2L38.7 48.6M86.5 99.7L85.8 86.1M86.5 99.7L73.0 98.1M77.9 90.6L77.3 78.0M77.9 90.6L65.5 89.0M69.4 81.4L68.7 69.9M69.4 81.4L58.0 80.0M60.8 72.2L60.2 61.8M60.8 72.2L50.5 70.9M52.2 63.0L51.7 53.7M52.2 63.0L42.9 61.9M100 114.2L161.3 48.6M113.5 99.7L127.0 98.1M113.5 99.7L114.2 86.1M122.1 90.6L134.5 89.0M122.1 90.6L122.7 78.0M130.6 81.4L142.0 80.0M130.6 81.4L131.3 69.9M139.2 72.2L149.5 70.9M139.2 72.2L139.8 61.8M147.8 63.0L157.1 61.9M147.8 63.0L148.3 53.7M100 114.2L42.9 110.1M87.4 113.3L81.2 107.2M87.4 113.3L80.4 118.4M79.4 112.7L73.7 107.1M79.4 112.7L73.0 117.4M71.4 112.1L66.2 107.0M71.4 112.1L65.5 116.4M63.4 111.5L58.7 106.9M63.4 111.5L58.1 115.4M55.4 111.0L51.2 106.8M55.4 111.0L50.6 114.5M100 114.2L157.1 110.1M112.6 113.3L119.6 118.4M112.6 113.3L118.8 107.2M120.6 112.7L127.0 117.4M120.6 112.7L126.3 107.1M128.6 112.1L134.5 116.4M128.6 112.1L133.8 107.0M136.6 111.5L141.9 115.4M136.6 111.5L141.3 106.9M144.6 111.0L149.4 114.5M144.6 111.0L148.8 106.8"),STEM=new Path2D("M100 112.2 Q101.5 134.2 96.5 152.2");
+  var W,H,dpr,leaves=[];
+  var PAL=[['#e8a542','#b86a1e','#6e3a10'],['#d9772a','#a2481a','#5e2208'],['#b8452a','#862c1c','#4e150e'],
+           ['#9c2f2a','#6e1f20','#3e0f10'],['#b98a46','#85602a','#4f3416'],['#d9a24a','#a8712a','#64400f']];
+  PAL.forEach(function(p,i){var g=ctx.createLinearGradient(30,10,170,150);g.addColorStop(0,p[0]);g.addColorStop(.55,p[1]);g.addColorStop(1,p[2]);PAL[i]=g;});
+  function resize(){dpr=Math.min(window.devicePixelRatio||1,2);W=innerWidth;H=innerHeight;cv.width=W*dpr;cv.height=H*dpr;
+    var n=W<600?26:42;while(leaves.length<n)leaves.push(make(true));leaves.length=n;}
+  function make(init){
+    var depth=Math.random();
+    return{x:Math.random()*W,y:init?Math.random()*H:-40-Math.random()*H*.3,
+      size:12+depth*18,wid:1.2+Math.random()*.32,vy:22+depth*30+Math.random()*10,drift:(Math.random()-.5)*8,
+      sa:12+Math.random()*30,sf:.4+Math.random()*.5,sp:Math.random()*6.28,
+      rot:Math.random()*6.28,spin:(Math.random()-.5)*.4,
+      ff:.7+Math.random()*.9,fp:Math.random()*6.28,
+      pal:Math.floor(Math.random()*PAL.length),alpha:.38+depth*.42,t:Math.random()*20};
+  }
+  var last=0;
+  function frame(ts){
+    requestAnimationFrame(frame);
+    var dt=Math.min((ts-last)/1000||0,.05);last=ts;
+    ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,W,H);
+    for(var i=0;i<leaves.length;i++){
+      var l=leaves[i];l.t+=dt;
+      var flip=Math.cos(l.t*l.ff+l.fp),flat=Math.abs(flip);
+      l.y+=l.vy*(.55+.65*(1-flat))*dt;
+      l.x+=l.drift*dt+Math.cos(l.t*l.sf+l.sp)*l.sa*l.sf*dt;
+      l.rot+=l.spin*dt;
+      if(l.y>H+l.size*2){leaves[i]=make(false);continue;}
+      if(l.x<-60)l.x=W+40;else if(l.x>W+60)l.x=-40;
+      var lean=Math.cos(l.t*l.sf+l.sp)*.5+Math.sin(l.t*l.ff)*.15;
+      ctx.save();
+      ctx.translate(l.x,l.y);ctx.rotate(l.rot*.25+lean);
+      var s=l.size/200;ctx.scale(s*l.wid,s*(flip<0?-1:1)*Math.max(.12,flat));
+      ctx.translate(-100,-100);
+      ctx.globalAlpha=l.alpha;ctx.fillStyle=PAL[l.pal];ctx.fill(PATH);
+      ctx.globalAlpha=l.alpha*(1-flat)*.5;ctx.fillStyle='#220a02';ctx.fill(PATH);
+      if(l.size>15){ctx.globalAlpha=l.alpha*.6;ctx.strokeStyle='rgba(255,214,150,.35)';ctx.lineWidth=1.6;ctx.lineCap='round';ctx.stroke(VEINS);}
+      ctx.lineWidth=5;ctx.strokeStyle='#5a3214';ctx.stroke(STEM);
+      ctx.restore();
     }
-
-    // تغییر تب‌ها
-    function openTab(tabId, btn){
-      const contents = document.querySelectorAll('.tab-content');
-      const buttons = document.querySelectorAll('.tab-btn');
-
-      contents.forEach(content => content.classList.remove('active'));
-      buttons.forEach(button => button.classList.remove('active'));
-
-      document.getElementById(tabId).classList.add('active');
-      btn.classList.add('active');
-
-      btn.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest'
-      });
-    }
-  </script>
-
+  }
+  resize();addEventListener('resize',resize);requestAnimationFrame(frame);
+})();
+</script>
 </body>
 </html>
